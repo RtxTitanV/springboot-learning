@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner
  * @version v1.0.0
  */
 @RunWith(SpringRunner::class)
-@SpringBootTest(classes = arrayOf(KotlinApplication::class))
+@SpringBootTest(classes = [KotlinApplication::class])
 class KotlinTest {
 
     private val logger: Logger = LoggerFactory.getLogger(KotlinTest::class.java)
