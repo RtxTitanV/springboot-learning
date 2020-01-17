@@ -1,4 +1,4 @@
-package com.rtxtitanv.model.Query;
+package com.rtxtitanv.model.query;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author rtxtitanv
  * @version v1.0.0
- * @name com.rtxtitanv.model.Query.UserQuery
+ * @name com.rtxtitanv.model.query.UserQuery
  * @description 封装用户查询条件类
  * @date 2020/1/3 15:23
  */

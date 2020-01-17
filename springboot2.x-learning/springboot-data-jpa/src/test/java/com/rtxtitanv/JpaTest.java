@@ -2,7 +2,7 @@ package com.rtxtitanv;
 
 import com.mysql.cj.util.StringUtils;
 import com.rtxtitanv.model.*;
-import com.rtxtitanv.model.Query.UserQuery;
+import com.rtxtitanv.model.query.UserQuery;
 import com.rtxtitanv.projections.NameOnly;
 import com.rtxtitanv.repository.*;
 import org.junit.Test;
