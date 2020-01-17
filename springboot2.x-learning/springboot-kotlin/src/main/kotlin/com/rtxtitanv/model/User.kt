@@ -10,10 +10,10 @@ import com.rtxtitanv.annotation.KtNoArgsConstructor
  * @version v1.0.0
  */
 @KtNoArgsConstructor
-data class User(var id: Long,
-                var userName: String,
-                var passWord: String,
-                var nickName: String,
-                var age: Int,
-                var tel: String,
-                var addr: String)
+data class User(var id: Long? = null,//?表示声明为Nullable变量
+                var userName: String? = null,
+                var passWord: String? = null,
+                var nickName: String? = null,
+                var age: Int? = null,
+                var tel: String? = null,
+                var addr: String? = null)
