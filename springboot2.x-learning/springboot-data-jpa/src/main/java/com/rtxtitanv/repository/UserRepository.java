@@ -69,7 +69,7 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
     User findTopByOrderByAgeAsc();
     Page<User> queryFirst10ByNickName(String nickName, Pageable pageable);
     List<User> findFirst10ByNickName(String nickName, Sort sort);
-    List<User> findTop10ByNickName(String nickName, Pageable pageable);
+    Page<User> findTop10ByNickName(String nickName, Pageable pageable);
 
     /**
      * 方法命名规则之按昵称(忽略大小写)删除
