@@ -1,5 +1,8 @@
 package com.rtxtitanv.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +14,8 @@ import java.util.Set;
  * @description 账户实体类 OneToMany 一对多的一方
  * @date 2020/1/3 20:34
  */
+@Setter
+@Getter
 @Entity
 @Table(name = "account")
 public class Account {
@@ -42,78 +47,6 @@ public class Account {
             cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE},
             fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<Order> orders = new HashSet<>();
-
-    public Long getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public String getAccountName() {
-        return accountName;
-    }
-
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-
-    public String getAccountPassword() {
-        return accountPassword;
-    }
-
-    public void setAccountPassword(String accountPassword) {
-        this.accountPassword = accountPassword;
-    }
-
-    public String getAccountAlias() {
-        return accountAlias;
-    }
-
-    public void setAccountAlias(String accountAlias) {
-        this.accountAlias = accountAlias;
-    }
-
-    public String getAccountAddr() {
-        return accountAddr;
-    }
-
-    public void setAccountAddr(String accountAddr) {
-        this.accountAddr = accountAddr;
-    }
-
-    public String getAccountTel() {
-        return accountTel;
-    }
-
-    public void setAccountTel(String accountTel) {
-        this.accountTel = accountTel;
-    }
-
-    public Long getAccountRank() {
-        return accountRank;
-    }
-
-    public void setAccountRank(Long accountRank) {
-        this.accountRank = accountRank;
-    }
-
-    public String getAccountLocation() {
-        return accountLocation;
-    }
-
-    public void setAccountLocation(String accountLocation) {
-        this.accountLocation = accountLocation;
-    }
-
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
 
     @Override
     public String toString() {

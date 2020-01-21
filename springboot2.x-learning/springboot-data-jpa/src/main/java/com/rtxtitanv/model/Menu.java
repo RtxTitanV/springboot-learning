@@ -1,5 +1,8 @@
 package com.rtxtitanv.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +14,8 @@ import java.util.Set;
  * @description 菜单实体类
  * @date 2020/1/3 20:30
  */
+@Setter
+@Getter
 @Entity
 @Table(name = "menu")
 public class Menu {
@@ -36,62 +41,6 @@ public class Menu {
             joinColumns = @JoinColumn(name = "menu_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
-    public Long getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(Long menuId) {
-        this.menuId = menuId;
-    }
-
-    public String getMenuName() {
-        return menuName;
-    }
-
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
-    }
-
-    public String getMenuPath() {
-        return menuPath;
-    }
-
-    public void setMenuPath(String menuPath) {
-        this.menuPath = menuPath;
-    }
-
-    public Boolean getMenuHidden() {
-        return menuHidden;
-    }
-
-    public void setMenuHidden(Boolean menuHidden) {
-        this.menuHidden = menuHidden;
-    }
-
-    public Long getMenuParentId() {
-        return menuParentId;
-    }
-
-    public void setMenuParentId(Long menuParentId) {
-        this.menuParentId = menuParentId;
-    }
-
-    public String getMenuIcon() {
-        return menuIcon;
-    }
-
-    public void setMenuIcon(String menuIcon) {
-        this.menuIcon = menuIcon;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 
     @Override
     public String toString() {
