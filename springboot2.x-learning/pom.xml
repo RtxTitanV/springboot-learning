@@ -12,6 +12,7 @@
         <module>springboot-data-jpa</module>
         <module>springboot-data-jpa-multi</module>
         <module>springboot-kotlin</module>
+        <module>springboot-data-jpa-kotlin</module>
     </modules>
 
 </project>
