@@ -1,5 +1,5 @@
 spring:
-  # mysql数据库连接信息
+  #mysql数据库连接信息
   datasource:
     #高版本mysql驱动
     driver-class-name: com.mysql.cj.jdbc.Driver

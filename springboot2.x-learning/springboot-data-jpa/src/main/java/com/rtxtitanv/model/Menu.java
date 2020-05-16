@@ -11,7 +11,7 @@ import java.util.Set;
  * @author rtxtitanv
  * @version v1.0.0
  * @name com.rtxtitanv.model.Menu
- * @description 菜单 实体类
+ * @description 菜单实体类
  * @date 2020/1/3 20:30
  */
 @Setter
