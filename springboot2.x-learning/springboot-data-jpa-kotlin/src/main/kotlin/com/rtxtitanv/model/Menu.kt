@@ -26,8 +26,8 @@ class Menu(@Id
            @Column(name = "menu_icon")
            var menuIcon: String? = null,
            @ManyToMany(cascade = [CascadeType.PERSIST], fetch = FetchType.LAZY)
-           //配置中间表,joinColumns:中间表的外键字段关联当前实体类所对应表的主键字段
-           //inverseJoinColumns:中间表的外键字段关联对方表的主键字段
+           //配置中间表，joinColumns：中间表的外键字段关联当前实体类所对应表的主键字段
+           //inverseJoinColumns：中间表的外键字段关联对方表的主键字段
            @JoinTable(name = "role_menu",
                    joinColumns = [JoinColumn(name = "menu_id")],
                    inverseJoinColumns = [JoinColumn(name = "role_id")])

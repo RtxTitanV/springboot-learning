@@ -23,7 +23,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- 增量编译:为了使构建更快,为Maven启用增量编译 也可以使用 -Dkotlin.compiler.incremental=true 选项运行构建-->
+        <!-- 增量编译：为了使构建更快，为Maven启用增量编译 也可以使用 -Dkotlin.compiler.incremental=true 选项运行构建 -->
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <java.version>1.8</java.version>
         <kotlin.version>1.3.61</kotlin.version>
@@ -84,7 +84,7 @@
                     <compilerPlugins>
                         <!-- spring插件 -->
                         <plugin>spring</plugin>
-                        <!-- jpa插件,与kotlin-spring插件类似,kotlin-jpa是在no-arg之上的一层包装。
+                        <!-- jpa插件，与kotlin-spring插件类似，kotlin-jpa是在no-arg之上的一层包装。
                         该插件自动指定了@Entity、@Embeddable与@MappedSuperclass这几个无参注解 -->
                         <plugin>jpa</plugin>
                     </compilerPlugins>

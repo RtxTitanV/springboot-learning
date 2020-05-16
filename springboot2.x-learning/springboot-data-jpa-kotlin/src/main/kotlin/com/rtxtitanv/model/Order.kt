@@ -10,7 +10,7 @@ import javax.persistence.*
  * @version v1.0.0
  */
 @Entity
-@Table(name = "orders") //注意表名不能为order,自动建表时会报错
+@Table(name = "orders") //注意表名不能为order，自动建表时会报错
 class Order(@Id
             @GeneratedValue(strategy = GenerationType.IDENTITY)
             @Column(name = "orders_id")
@@ -29,7 +29,7 @@ class Order(@Id
             var orderAddr: String? = null,
             //FetchType.EAGER 立即加载
             @ManyToOne(cascade = [CascadeType.PERSIST], fetch = FetchType.EAGER)
-            //定义主键字段和外键字段对应关系,name:外键字段名称, nullable:是否允许为空
+            //定义主键字段和外键字段对应关系，name：外键字段名称，nullable：是否允许为空
             @JoinColumn(name = "orders_account_id", nullable = false)
             var account: Account? = null) {
 
