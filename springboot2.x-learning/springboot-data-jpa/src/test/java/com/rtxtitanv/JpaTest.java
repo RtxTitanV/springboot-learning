@@ -29,7 +29,7 @@ import java.util.*;
  * @author rtxtitanv
  * @version v1.0.0
  * @name com.rtxtitanv.JpaTest
- * @description SpringDataJpa单元测试类
+ * @description SpringDataJpa 单元测试类
  * @date 2019/12/31 20:05
  */
 @RunWith(SpringRunner.class)

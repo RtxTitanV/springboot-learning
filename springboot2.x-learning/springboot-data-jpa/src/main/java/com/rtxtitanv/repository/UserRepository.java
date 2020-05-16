@@ -18,7 +18,7 @@ import java.util.List;
  * @author rtxtitanv
  * @version v1.0.0
  * @name com.rtxtitanv.repository.UserRepository
- * @description UserRepository接口用于操作用户表，JpaRepository<实体类类型, 主键类型>：用于完成基本CRUD操作
+ * @description UserRepository 接口用于操作用户表，JpaRepository<实体类类型, 主键类型>：用于完成基本CRUD操作
  * JpaSpecificationExecutor<实体类类型>：用于复杂查询
  * @date 2019/12/31 19:31
  */

@@ -9,7 +9,7 @@ import javax.persistence.*;
  * @author rtxtitanv
  * @version v1.0.0
  * @name com.rtxtitanv.model.Order
- * @description 订单实体类 ManyToOne 一对多的多方
+ * @description 订单 实体类 ManyToOne 一对多的多方
  * @date 2020/1/3 20:33
  */
 @Setter

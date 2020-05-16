@@ -11,7 +11,7 @@ import javax.persistence.*;
  * @author rtxtitanv
  * @version v1.0.0
  * @name com.rtxtitanv.model.User
- * @description 用户实体类
+ * @description 用户 实体类
  * @date 2019/12/31 18:49
  */
 @Accessors(chain = true) //lombok注解，支持链式编程
