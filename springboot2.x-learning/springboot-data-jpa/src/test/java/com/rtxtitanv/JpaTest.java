@@ -49,7 +49,7 @@ public class JpaTest {
     private static Logger logger = LoggerFactory.getLogger(JpaTest.class);
 
     /**
-     * 保存5条测试数据,一次插入一条数据
+     * 保存5条测试数据，一次插入一条数据
      * 使用方法 <S extends T> S save(S var1)
      * 实体中主键不存在时保存记录
      */
@@ -394,7 +394,7 @@ public class JpaTest {
     }
 
     /**
-     * 方法命名规则之按昵称(忽略大小写)删除
+     * 方法命名规则之按昵称（忽略大小写）删除
      */
     @Test
     public void deleteByNickNameIgnoreCaseTest() {
@@ -526,9 +526,9 @@ public class JpaTest {
     public void findByOneConditionTest() {
         logger.info("单条件查询测试开始");
         /**
-         * root:查询的根对象,可以通过get方法获取实体属性
-         * criteriaQuery:代表一个顶层查询对象,可以构建自定义查询,包含select,where,orderBy,groupBy等
-         * criteriaBuilder:查询条件构造器
+         * root：查询的根对象，可以通过get方法获取实体属性
+         * criteriaQuery：代表一个顶层查询对象，可以构建自定义查询，包含select、where、orderBy、groupBy等
+         * criteriaBuilder：查询条件构造器
          */
         List<User> userList = userRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
             //user_name = "qwer123"
@@ -554,7 +554,7 @@ public class JpaTest {
 
     /**
      * JpaSpecificationExecutor动态拼接多条件查询测试
-     * 拼接方式1:每个条件均为and连接
+     * 拼接方式1：每个条件均为and连接
      * 实际开发中可以根据实际的动态条件灵活处理
      */
     @Test
@@ -635,7 +635,7 @@ public class JpaTest {
 
     /**
      * JpaSpecificationExecutor动态拼接多条件查询测试
-     * 拼接方式2:与方式1效果相同
+     * 拼接方式2：与方式1效果相同
      */
     @Test
     public void findByConditionsTest2() {
@@ -703,11 +703,11 @@ public class JpaTest {
                 }
             }
             /**
-             * Predicate and(Predicate... var1):and连接查询条件,可传入Predicate[] and连接数组内所有条件
-             * Predicate or(Predicate... var1):or连接查询条件,可传入Predicate[] or连接数组内所有条件
-             * 此处所有条件均为and连接,如果有更复杂的条件连接,比如:
+             * Predicate and(Predicate... var1)：and连接查询条件，可传入Predicate[] and连接数组内所有条件
+             * Predicate or(Predicate... var1)：or连接查询条件，可传入Predicate[] or连接数组内所有条件
+             * 此处所有条件均为and连接，如果有更复杂的条件连接，比如：
              * where ((a=? and b=? and c=?) or (e=? and f=?) or g=?) and x=? and y=?
-             * 先and连接abc,ef,再or连接abc,ef,g作为一个条件z,再and连接xyz
+             * 先and连接abc、ef，再or连接abc、ef和g作为一个条件z，再and连接xyz
              */
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         });
@@ -738,15 +738,15 @@ public class JpaTest {
                 .setMinAgeQuery(null).setMaxAgeQuery(25).setIdQuery(null)
                 .setTelQuery("135").setEmailQuery("rt").setPassWordQuery("123")
                 .setIdsQuery(ids).setAgesQuery(ages);
-        //定义排序规则 先按age降序,再按tel升序,再按id降序
+        //定义排序规则 先按age降序，再按tel升序，再按id降序
         Sort.Order orderAge = new Sort.Order(Sort.Direction.DESC,"age");
         Sort.Order orderTel = new Sort.Order(Sort.Direction.ASC,"tel");
         Sort.Order orderId = new Sort.Order(Sort.Direction.DESC,"id");
         Sort sort = Sort.by(orderAge, orderTel, orderId);
-        //定义分页参数,由于是测试第几页和每页记录数写死
+        //定义分页参数，由于是测试第几页和每页记录数写死
         int pageNum = 3;
         int pageSize = 3;
-        //jpa分页从0页开始,页码需要-1
+        //jpa分页从0页开始，页码需要-1
         Pageable pageable = PageRequest.of(pageNum - 1 , pageSize, sort);
         logger.info("多条件排序分页查询测试开始");
         Page<User> page = userRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
@@ -855,13 +855,13 @@ public class JpaTest {
         order2.setAccount(account);
         //保存操作
         //由于account和order实体设置了级联保存
-        //此处任意保存其中一个order,后台会自动保存order1,order2和关联的account
+        //此处任意保存其中一个order，后台会自动保存order1、order2和关联的account
         logger.info("保存开始");
         orderRepository.save(order1);
         orderRepository.save(order2);
-        //保存account,会自动保存关联的order1,order2
+        //保存account，会自动保存关联的order1和order2
         accountRepository.save(account);
-        //此处为account关联order1,和order2保存之后再关联一个新的order3保存
+        //此处为account关联order1和order2保存之后再关联一个新的order3保存
         account.getOrders().add(order3);
         order3.setAccount(account);
         orderRepository.save(order3);
@@ -876,7 +876,7 @@ public class JpaTest {
     @Rollback(false)
     @Test
     public void oneToManyFindTest() {
-        //查询一个账户,并获取账户的所有订单
+        //查询一个账户，并获取账户的所有订单
         Optional<Account> accountOptional = accountRepository.findById(1L);
         if (!accountOptional.isPresent()) {
             logger.info("账户不存在");
@@ -888,7 +888,7 @@ public class JpaTest {
             logger.info("----------------订单信息----------------");
             account.getOrders().forEach(order -> logger.info(order.toString()));
         }
-        //查询一个订单,并获取订单所对应的账户
+        //查询一个订单，并获取订单所对应的账户
         Optional<Order> orderOptional = orderRepository.findById(1L);
         if (!orderOptional.isPresent()) {
             logger.info("订单不存在");
@@ -903,9 +903,9 @@ public class JpaTest {
         }
         //Specification多表关联查询
         List<Account> accounts = accountRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
-            //orders为account关联对象名称,JoinType:连接方式,LEFT:左外连接,RIGHT:右外连接,INNER:内连接
+            //orders为account关联对象名称，JoinType：连接方式，LEFT：左外连接，RIGHT：右外连接，INNER：内连接
             Join<Account, Order> join = root.join("orders", JoinType.LEFT);
-            //distinct(true):去除重复记录
+            //distinct(true)：去除重复记录
             criteriaQuery.distinct(true);
             return criteriaBuilder.equal(join.get("orderId").as(Long.class), 3L);
         });
@@ -959,11 +959,11 @@ public class JpaTest {
     @Rollback(false)
     @Test
     public void oneToManyDeleteTest() {
-        //account设置了级联删除,有多方关联时删除account将会同时删除关联的所有order
-        //如果account没有设置级联删除,有多方关联删除一方时,默认置外键为null,如果外键不允许
-        //为空,会报错,如果配置了放弃维护关联关系则不能删除
+        //account设置了级联删除，有多方关联时删除account将会同时删除关联的所有order
+        //如果account没有设置级联删除，有多方关联删除一方时，默认置外键为null，如果外键不允许
+        //为空，会报错，如果配置了放弃维护关联关系则不能删除
         //accountRepository.deleteById(1L);
-        //只删除多方记录,直接删除会有问题,删除后再关联查询多方记录时没有生成删除语句
+        //只删除多方记录，直接删除会有问题，删除后再关联查询多方记录时没有生成删除语句
         //orderRepository.deleteById(3L);
         Optional<Account> accountOptional = accountRepository.findById(1L);
         if (!accountOptional.isPresent()) {
@@ -973,7 +973,7 @@ public class JpaTest {
             Set<Order> orders = account.getOrders();
             logger.info("删除开始");
             for (Iterator<Order> iterator = orders.iterator(); iterator.hasNext(); ) {
-                //由于orphanRemoval = true,在一方关联多方的集合中移除多方,将会在多方删除这些记录
+                //由于orphanRemoval = true，在一方关联多方的集合中移除多方，将会在多方删除这些记录
                 if (iterator.next().getOrderId().equals(1L)) {
                     iterator.remove();
                 }
@@ -1024,7 +1024,7 @@ public class JpaTest {
         menu2.getRoles().add(role3);
         menu3.getRoles().add(role1);
         menu3.getRoles().add(role2);
-        //保存,role和menu均设置了级联保存
+        //保存，role和menu均设置了级联保存
         menuRepository.save(menu1);
         //roleRepository.save(role1); 和save menu一样
     }
@@ -1036,7 +1036,7 @@ public class JpaTest {
     @Rollback(false)
     @Test
     public void manyToManyFindTest() {
-        //查询一个角色,并获取角色的所有菜单
+        //查询一个角色，并获取角色的所有菜单
         Optional<Role> roleOptional = roleRepository.findById(1L);
         if (!roleOptional.isPresent()) {
             logger.info("角色不存在");
@@ -1048,7 +1048,7 @@ public class JpaTest {
             logger.info("----------------菜单信息----------------");
             role.getMenus().forEach(menu -> logger.info(menu.toString()));
         }
-        //查询一个菜单,并获取菜单的角色
+        //查询一个菜单，并获取菜单的角色
         Optional<Menu> menuOptional = menuRepository.findById(1L);
         if (!menuOptional.isPresent()) {
             logger.info("菜单不存在");
@@ -1062,9 +1062,9 @@ public class JpaTest {
         }
         //Specification多表关联查询
         List<Role> roles = roleRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
-            //menus为role关联对象名称,JoinType:连接方式,LEFT:左外连接,RIGHT:右外连接,INNER:内连接
+            //menus为role关联对象名称，JoinType：连接方式，LEFT：左外连接，RIGHT：右外连接，INNER：内连接
             Join<Role, Menu> join = root.join("menus", JoinType.LEFT);
-            //distinct(true):去除重复记录
+            //distinct(true)：去除重复记录
             criteriaQuery.distinct(true);
             return criteriaBuilder.lt(join.get("menuId").as(Long.class), 3L);
         });
@@ -1122,12 +1122,12 @@ public class JpaTest {
             logger.info("角色不存在");
         } else {
             Role role1 = roleOptional.get();
-            //关联关系解除(id为1的role-->id为1的menu,id为2的menu)
+            //关联关系解除（id为1的role-->id为1的menu，id为2的menu）
             //删除中间表的关联记录
             role1.getMenus().forEach(menu -> {
                 menu.getRoles().remove(role1);
             });
-            //不删除role的情况,重新关联(id为1的role-->id为3的menu)
+            //不删除role的情况，重新关联（id为1的role-->id为3的menu）
             /*Optional<Menu> menuOptional = menuRepository.findById(3L);
             if (!menuOptional.isPresent()) {
                 logger.info("菜单不存在");
@@ -1135,7 +1135,7 @@ public class JpaTest {
                 Menu menu3 = menuOptional.get();
                 role1.getMenus().add(menu3);
                 menu3.getRoles().add(role1);
-                //更新关联,可以省略,省略也会更新中间表关联关系
+                //更新关联，可以省略，省略也会更新中间表关联关系
                 menuRepository.save(menu3);
             }*/
             //删除role

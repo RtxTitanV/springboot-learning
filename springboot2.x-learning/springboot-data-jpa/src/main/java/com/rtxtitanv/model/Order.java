@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "orders") //注意表名不能为order,自动建表时会报错
+@Table(name = "orders") //注意表名不能为order，自动建表时会报错
 public class Order {
 
     @Id
@@ -36,7 +36,7 @@ public class Order {
     private String orderAddr;
     //FetchType.EAGER 立即加载
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    //定义主键字段和外键字段对应关系,name:外键字段名称, nullable:是否允许为空
+    //定义主键字段和外键字段对应关系，name：外键字段名称，nullable：是否允许为空
     @JoinColumn(name = "orders_account_id", nullable = false)
     private Account account;
 
