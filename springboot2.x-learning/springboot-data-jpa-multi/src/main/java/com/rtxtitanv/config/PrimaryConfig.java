@@ -24,8 +24,8 @@ import java.util.Map;
  */
 @Configuration
 @EnableTransactionManagement
-//entityManagerFactoryRef:指定实体管理器工厂,transactionManagerRef:指定事务管理器
-//basePackages:指定该数据源的repository所在包路径
+//entityManagerFactoryRef：指定实体管理器工厂，transactionManagerRef：指定事务管理器
+//basePackages：指定该数据源的repository所在包路径
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactoryPrimary",
         transactionManagerRef = "transactionManagerPrimary",
         basePackages = {"com.rtxtitanv.repository.primary"})
@@ -42,7 +42,7 @@ public class PrimaryConfig {
      * @return LocalContainerEntityManagerFactoryBean
      */
     @Bean(name = "entityManagerFactoryPrimary")
-    @Primary //标识为主数据源(主库对应的数据源)
+    @Primary //标识为主数据源（主库对应的数据源）
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary(EntityManagerFactoryBuilder builder) {
         return builder.dataSource(primaryDataSource)
                 //指定组合jpaProperties和hibernateProperties配置的map对象
