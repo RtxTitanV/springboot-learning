@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service
 @Service
 class KotlinServiceImpl : KotlinService {
     /**
-     * 模拟根据年龄查询用户,只是测试,返回写死的user数据
+     * 模拟根据年龄查询用户，只是测试，返回写死的user数据
      */
     override fun findUserByAge(age: Int): List<User> {
         val user1 = User(1L, "aaa",

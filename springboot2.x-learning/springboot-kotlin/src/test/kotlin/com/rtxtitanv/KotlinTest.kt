@@ -25,8 +25,8 @@ class KotlinTest {
     fun kotlinTest() {
         //通过反射调用自动生成的无参构造函数
         val user1 = User::class.java.newInstance()
-        //在User类主构造函数中初始化了属性值,则可以通过User()调用无参构造函数,省略no-args插件也可以,也可以反射调用
-        //如果没有在主构造函数中初始化属性值,则不能通过User()显式调用无参构造函数,必须要加上应用no-args插件的注解
+        //在User类主构造函数中初始化了属性值，则可以通过User()调用无参构造函数，省略no-args插件也可以，也可以反射调用
+        //如果没有在主构造函数中初始化属性值，则不能通过User()显式调用无参构造函数，必须要加上应用no-args插件的注解
         //且通过反射调用
         val user2 = User()
         logger.info("user1: " + user1.toString())
