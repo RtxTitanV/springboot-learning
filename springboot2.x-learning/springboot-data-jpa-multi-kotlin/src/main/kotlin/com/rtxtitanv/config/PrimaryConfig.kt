@@ -22,8 +22,8 @@ import javax.sql.DataSource
  */
 @Configuration
 @EnableTransactionManagement
-//entityManagerFactoryRef:指定实体管理器工厂,transactionManagerRef:指定事务管理器
-//basePackages:指定该数据源的repository所在包路径
+//entityManagerFactoryRef：指定实体管理器工厂，transactionManagerRef：指定事务管理器
+//basePackages：指定该数据源的repository所在包路径
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactoryPrimary",
         transactionManagerRef = "transactionManagerPrimary",
         basePackages = ["com.rtxtitanv.repository.primary"])
@@ -36,7 +36,7 @@ class PrimaryConfig(@Resource(name = "primaryDataSource") private val primaryDat
      * @return LocalContainerEntityManagerFactoryBean
      */
     @Bean(name = ["entityManagerFactoryPrimary"])
-    @Primary //标识为主数据源(主库对应的数据源)
+    @Primary //标识为主数据源（主库对应的数据源）
     fun entityManagerFactoryPrimary(builder: EntityManagerFactoryBuilder): LocalContainerEntityManagerFactoryBean {
         return builder.dataSource(primaryDataSource)
                 //指定组合jpaProperties和hibernateProperties配置的map对象
