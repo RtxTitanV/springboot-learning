@@ -14,6 +14,7 @@
         <module>springboot-kotlin</module>
         <module>springboot-data-jpa-kotlin</module>
         <module>springboot-data-jpa-multi-kotlin</module>
+        <module>springboot-docker</module>
     </modules>
 
 </project>

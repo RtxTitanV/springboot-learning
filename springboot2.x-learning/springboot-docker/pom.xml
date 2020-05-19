@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.rtxtitanv</groupId>
+    <artifactId>springboot-docker</artifactId>
+    <version>3.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>springboot-docker</name>
+    <description>使用Docker部署SpringBoot应用并推送至远程仓库（内网和阿里云）</description>
+
+    <parent>
+        <!-- SpringBoot 起步依赖 -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.2.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <docker.repostory>registry.cn-chengdu.aliyuncs.com</docker.repostory>
+        <docker.registry.name>rtxtitanv</docker.registry.name>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <!-- 定义一个执行命令的id -->
+                        <id>build-image</id>
+                        <!-- 指定需要绑定的mvn命令-->
+                        <phase>package</phase>
+                        <goals>
+                            <!-- 指定要执行的命令，build绑定package -->
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tag-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <!-- 指定要执行的命令，tag绑定package -->
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <!-- 指定需要打标签的镜像 -->
+                            <image>${docker.registry.name}/${project.artifactId}:${project.version}</image>
+                            <!-- 指定打标签后的完整镜像 -->
+                            <newName>
+                                ${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}
+                            </newName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>push-image</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <!-- 指定要执行的命令，push绑定deploy -->
+                            <goal>push</goal>
+                        </goals>
+                        <configuration>
+                            <!-- 指定要push的镜像 -->
+                            <imageName>
+                                ${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}
+                            </imageName>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- 私有仓库配置，与maven的settings.xml中的<server>的<id>对应 -->
+                    <serverId>docker-aliyun</serverId>
+                    <!-- 远程仓库地址 -->
+                    <registryUrl>${docker.repostory}</registryUrl>
+                    <!-- 覆盖相同标签镜像 -->
+                    <forceTags>true</forceTags>
+                    <!-- 构建后上传镜像 -->
+                    <!--<pushImage>true</pushImage>-->
+                    <!-- Docker远程地址 -->
+                    <dockerHost>http://192.168.221.128:2375</dockerHost>
+                    <!-- Dockerfile文件路径 -->
+                    <!--<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>-->
+                    <!-- 指定镜像名称 -->
+                    <imageName>${docker.registry.name}/${project.artifactId}:${project.version}</imageName>
+                    <!-- 指定基础镜像 -->
+                    <baseImage>jdk1.8/ubuntu:v1.0.0</baseImage>
+                    <!-- 指定容器启动时的入口命令 -->
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <!-- 指定镜像tag -->
+                    <!-- <imageTags>
+                         <imageTag>${project.version}</imageTag>
+                     </imageTags>-->
+                    <resources>
+                        <!-- 指定资源文件 -->
+                        <resource>
+                            <!-- 指定要复制的目录路径，这里是当前目录 -->
+                            <targetPath>/</targetPath>
+                            <!-- 指定要复制的根目录，这里是target目录 -->
+                            <directory>${project.build.directory}</directory>
+                            <!-- 指定需要拷贝的文件，这里指最后生成的jar包 -->
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
