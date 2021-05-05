@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * @author rtxtitanv
  * @version 1.0.0
- * @name com.rtxtitanv.config.SecondaryConfig
+ * @name com.rtxtitanv.configuration.SecondaryConfig
  * @description 第二数据源配置类
  * @date 2020/1/7 19:21
  */

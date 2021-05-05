@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * @author rtxtitanv
  * @version 1.0.0
- * @name com.rtxtitanv.config.DataSourceConfig
+ * @name com.rtxtitanv.configuration.DataSourceConfig
  * @description 多数据源配置类
  * @date 2020/1/7 19:19
  */
