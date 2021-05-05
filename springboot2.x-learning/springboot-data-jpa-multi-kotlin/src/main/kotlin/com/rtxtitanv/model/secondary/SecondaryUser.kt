@@ -7,7 +7,7 @@ import javax.persistence.*
  * @description 从数据库用户实体类
  * @author rtxtitanv
  * @date 2020/2/5 18:29
- * @version v1.0.0
+ * @version 1.0.0
  */
 @Entity
 @Table(name = "user")

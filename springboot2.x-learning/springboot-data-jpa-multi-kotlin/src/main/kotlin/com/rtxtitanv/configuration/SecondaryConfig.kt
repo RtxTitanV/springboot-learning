@@ -1,4 +1,4 @@
-package com.rtxtitanv.config
+package com.rtxtitanv.configuration
 
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder
 import org.springframework.context.annotation.Bean
@@ -17,7 +17,7 @@ import javax.sql.DataSource
  * @description 第二数据源配置类
  * @author rtxtitanv
  * @date 2020/2/5 17:34
- * @version v1.0.0
+ * @version 1.0.0
  */
 @Configuration
 @EnableTransactionManagement

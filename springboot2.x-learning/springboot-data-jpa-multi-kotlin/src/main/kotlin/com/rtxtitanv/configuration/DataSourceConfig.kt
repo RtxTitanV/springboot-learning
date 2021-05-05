@@ -1,4 +1,4 @@
-package com.rtxtitanv.config
+package com.rtxtitanv.configuration
 
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings
@@ -15,7 +15,7 @@ import javax.sql.DataSource
  * @description 多数据源配置类
  * @author rtxtitanv
  * @date 2020/2/5 16:27
- * @version v1.0.0
+ * @version 1.0.0
  */
 @Configuration
 class DataSourceConfig(private val jpaProperties: JpaProperties,

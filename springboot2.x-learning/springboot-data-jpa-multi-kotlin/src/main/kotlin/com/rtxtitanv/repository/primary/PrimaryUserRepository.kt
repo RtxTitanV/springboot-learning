@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor
  * @description PrimaryUserRepository接口用于操作主库用户表
  * @author rtxtitanv
  * @date 2020/2/5 19:01
- * @version v1.0.0
+ * @version 1.0.0
  */
 interface PrimaryUserRepository : JpaRepository<PrimaryUser, Long>, JpaSpecificationExecutor<PrimaryUser>

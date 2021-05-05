@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner
  * @description SpringDataJpa多数据源测试类
  * @author rtxtitanv
  * @date 2020/2/5 19:03
- * @version v1.0.0
+ * @version 1.0.0
  */
 @RunWith(SpringRunner::class)
 @SpringBootTest(classes = [JpaMultiApplication::class])

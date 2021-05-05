@@ -8,7 +8,7 @@ import org.springframework.boot.runApplication
  * @description 主启动类
  * @author rtxtitanv
  * @date 2020/2/5 16:21
- * @version v1.0.0
+ * @version 1.0.0
  */
 @SpringBootApplication
 class JpaMultiApplication
