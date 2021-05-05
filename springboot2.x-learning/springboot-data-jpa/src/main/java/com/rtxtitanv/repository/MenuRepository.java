@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.repository.MenuRepository
  * @description MenuRepository接口用于操作菜单表
  * @date 2020/1/3 21:37

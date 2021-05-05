@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.model.Role
  * @description 角色实体类
  * @date 2020/1/3 20:29

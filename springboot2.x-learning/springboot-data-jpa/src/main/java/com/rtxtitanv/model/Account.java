@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.model.Account
  * @description 账户实体类 OneToMany 一对多的一方
  * @date 2020/1/3 20:34

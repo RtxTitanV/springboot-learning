@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.model.User
  * @description 用户实体类
  * @date 2019/12/31 18:49

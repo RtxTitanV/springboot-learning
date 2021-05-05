@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.model.query.UserQuery
  * @description 封装用户查询条件类
  * @date 2020/1/3 15:23

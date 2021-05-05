@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.repository.OrderRepository
  * @description OrderRepository接口用于操作orders表
  * @date 2020/1/3 21:42

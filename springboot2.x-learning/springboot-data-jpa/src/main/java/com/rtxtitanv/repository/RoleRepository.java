@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.repository.RoleRepository
  * @description RoleRepository接口用于操作角色表
  * @date 2020/1/3 21:37
