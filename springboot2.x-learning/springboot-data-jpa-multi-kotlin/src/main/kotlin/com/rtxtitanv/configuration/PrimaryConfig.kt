@@ -14,7 +14,7 @@ import javax.persistence.EntityManager
 import javax.sql.DataSource
 
 /**
- * @name com.rtxtitanv.config.PrimaryConfig
+ * @name com.rtxtitanv.configuration.PrimaryConfig
  * @description 第一数据源配置类
  * @author rtxtitanv
  * @date 2020/2/5 17:33

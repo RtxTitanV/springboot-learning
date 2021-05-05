@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Primary
 import javax.sql.DataSource
 
 /**
- * @name com.rtxtitanv.config.DataSourceConfig
+ * @name com.rtxtitanv.configuration.DataSourceConfig
  * @description 多数据源配置类
  * @author rtxtitanv
  * @date 2020/2/5 16:27
