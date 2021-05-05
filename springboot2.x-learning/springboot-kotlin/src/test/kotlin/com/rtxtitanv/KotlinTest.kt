@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner
  * @description 单元测试类
  * @author rtxtitanv
  * @date 2020/1/16 15:33
- * @version v1.0.0
+ * @version 1.0.0
  */
 @RunWith(SpringRunner::class)
 @SpringBootTest(classes = [KotlinApplication::class])

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
  * @description KotlinService实现类
  * @author rtxtitanv
  * @date 2020/1/16 17:07
- * @version v1.0.0
+ * @version 1.0.0
  */
 @Service
 class KotlinServiceImpl : KotlinService {

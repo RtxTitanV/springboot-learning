@@ -8,7 +8,7 @@ import org.springframework.boot.runApplication
  * @description 主启动类
  * @author rtxtitanv
  * @date 2020/1/16 14:48
- * @version v1.0.0
+ * @version 1.0.0
  */
 @SpringBootApplication
 class KotlinApplication

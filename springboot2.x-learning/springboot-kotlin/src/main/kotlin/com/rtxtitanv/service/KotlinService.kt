@@ -7,7 +7,7 @@ import com.rtxtitanv.model.User
  * @description KotlinService接口
  * @author rtxtitanv
  * @date 2020/1/16 17:06
- * @version v1.0.0
+ * @version 1.0.0
  */
 interface KotlinService {
 

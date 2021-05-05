@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
  * @description KotlinController
  * @author rtxtitanv
  * @date 2020/1/16 14:59
- * @version v1.0.0
+ * @version 1.0.0
  */
 @RequestMapping("/kotlin")
 @RestController
