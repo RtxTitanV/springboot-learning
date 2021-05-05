@@ -17,7 +17,7 @@ import java.util.Optional;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.JpaMultiTest
  * @description SpringDataJpa多数据源测试类
  * @date 2020/1/7 18:22

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.repository.secondary.SecondaryUserRepository
  * @description SecondaryUserRepository用于操作从库用户表
  * @date 2020/1/7 19:37
