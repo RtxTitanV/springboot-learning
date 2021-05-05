@@ -5,7 +5,7 @@ package com.rtxtitanv.model.query
  * @description 封装用户查询条件类
  * @author rtxtitanv
  * @date 2020/1/17 23:55
- * @version v1.0.0
+ * @version 1.0.0
  */
 data class UserQuery(var idQuery: Long? = null,
                      var userNameQuery: String? = null,

@@ -7,7 +7,7 @@ import javax.persistence.*
  * @description 账户实体类 OneToMany 一对多的一方
  * @author rtxtitanv
  * @date 2020/1/20 21:08
- * @version v1.0.0
+ * @version 1.0.0
  */
 @Entity
 @Table(name = "account")

@@ -7,7 +7,7 @@ import javax.persistence.*
  * @description 用户实体类
  * @author rtxtitanv
  * @date 2020/1/17 16:40
- * @version v1.0.0
+ * @version 1.0.0
  */
 @Entity //声明实体类
 @Table(name = "user") //建立实体类与表的映射关系

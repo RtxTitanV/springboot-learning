@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor
  * @description AccountRepository接口用于操作account表
  * @author rtxtitanv
  * @date 2020/1/20 22:30
- * @version v1.0.0
+ * @version 1.0.0
  */
 interface AccountRepository : JpaRepository<Account, Long>, JpaSpecificationExecutor<Account>

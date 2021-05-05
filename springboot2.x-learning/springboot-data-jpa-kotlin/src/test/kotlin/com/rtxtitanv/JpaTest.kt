@@ -25,7 +25,7 @@ import java.util.*
  * @description SpringDataJpa单元测试类
  * @author rtxtitanv
  * @date 2020/1/17 17:49
- * @version v1.0.0
+ * @version 1.0.0
  */
 @RunWith(SpringRunner::class)
 @SpringBootTest(classes = [JpaApplication::class])

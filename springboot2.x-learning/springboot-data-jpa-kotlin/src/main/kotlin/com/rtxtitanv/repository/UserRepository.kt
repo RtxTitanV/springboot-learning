@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional
  * JpaSpecificationExecutor<实体类类型>：用于复杂查询
  * @author rtxtitanv
  * @date 2020/1/17 16:54
- * @version v1.0.0
+ * @version 1.0.0
  */
 interface UserRepository : JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
 

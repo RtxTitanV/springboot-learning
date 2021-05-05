@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor
  * @description RoleRepository接口用于操作角色表
  * @author rtxtitanv
  * @date 2020/1/20 22:33
- * @version v1.0.0
+ * @version 1.0.0
  */
 interface RoleRepository : JpaRepository<Role, Long>, JpaSpecificationExecutor<Role>

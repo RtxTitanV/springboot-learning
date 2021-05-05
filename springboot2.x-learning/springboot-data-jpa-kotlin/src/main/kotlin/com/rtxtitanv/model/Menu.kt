@@ -7,7 +7,7 @@ import javax.persistence.*
  * @description 菜单实体类
  * @author rtxtitanv
  * @date 2020/1/20 21:47
- * @version v1.0.0
+ * @version 1.0.0
  */
 @Entity
 @Table(name = "menu")

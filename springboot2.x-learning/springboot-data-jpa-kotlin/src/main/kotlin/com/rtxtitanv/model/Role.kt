@@ -7,7 +7,7 @@ import javax.persistence.*
  * @description 角色实体类
  * @author rtxtitanv
  * @date 2020/1/20 21:09
- * @version v1.0.0
+ * @version 1.0.0
  */
 @Entity
 @Table(name = "role")

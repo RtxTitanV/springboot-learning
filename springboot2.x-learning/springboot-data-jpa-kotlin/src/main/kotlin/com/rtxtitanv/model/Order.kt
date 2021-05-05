@@ -7,7 +7,7 @@ import javax.persistence.*
  * @description 订单实体类 ManyToOne 一对多的多方
  * @author rtxtitanv
  * @date 2020/1/20 21:08
- * @version v1.0.0
+ * @version 1.0.0
  */
 @Entity
 @Table(name = "orders") //注意表名不能为order，自动建表时会报错
