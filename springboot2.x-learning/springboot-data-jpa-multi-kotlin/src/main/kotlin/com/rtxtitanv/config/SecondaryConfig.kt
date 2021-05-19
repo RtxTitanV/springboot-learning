@@ -1,4 +1,4 @@
-package com.rtxtitanv.configuration
+package com.rtxtitanv.config
 
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder
 import org.springframework.context.annotation.Bean
@@ -13,7 +13,7 @@ import javax.persistence.EntityManager
 import javax.sql.DataSource
 
 /**
- * @name com.rtxtitanv.configuration.SecondaryConfig
+ * @name com.rtxtitanv.config.SecondaryConfig
  * @description 第二数据源配置类
  * @author rtxtitanv
  * @date 2020/2/5 17:34

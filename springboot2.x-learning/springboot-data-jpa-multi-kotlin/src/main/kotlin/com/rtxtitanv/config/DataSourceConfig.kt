@@ -1,4 +1,4 @@
-package com.rtxtitanv.configuration
+package com.rtxtitanv.config
 
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Primary
 import javax.sql.DataSource
 
 /**
- * @name com.rtxtitanv.configuration.DataSourceConfig
+ * @name com.rtxtitanv.config.DataSourceConfig
  * @description 多数据源配置类
  * @author rtxtitanv
  * @date 2020/2/5 16:27
