@@ -1,4 +1,4 @@
-package com.rtxtitanv.configuration;
+package com.rtxtitanv.config;
 
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * @author rtxtitanv
  * @version 1.0.0
- * @name com.rtxtitanv.configuration.SecondaryConfig
+ * @name com.rtxtitanv.config.SecondaryConfig
  * @description 第二数据源配置类
  * @date 2020/1/7 19:21
  */
