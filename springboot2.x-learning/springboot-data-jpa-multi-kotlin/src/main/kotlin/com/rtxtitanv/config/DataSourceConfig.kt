@@ -26,11 +26,11 @@ class DataSourceConfig(private val jpaProperties: JpaProperties,
      * @return 数据源
      */
     @Bean(name = ["primaryDataSource"])
-    @Primary //标识为主数据源
-    //prefix：指定yml配置文件中配置项的前缀
+    @Primary // 标识为主数据源
+    // prefix：指定yml配置文件中配置项的前缀
     @ConfigurationProperties(prefix = "spring.datasource.primary")
     fun primaryDataSource(): DataSource {
-        //这种方式默认只满足spring的配置方式，如果使用其他数据库连接池，需独立获取配置
+        // 这种方式默认只满足spring的配置方式，如果使用其他数据库连接池，需独立获取配置
         return DataSourceBuilder.create().build()
     }
 

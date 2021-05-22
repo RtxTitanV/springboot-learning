@@ -1,19 +1,19 @@
 spring:
-  #多数据源数据库连接配置
+  # 多数据源数据库连接配置
   datasource:
-    #第一数据源配置
+    # 第一数据源配置
     primary:
       jdbc-url: jdbc:mysql://127.0.0.1:3306/test1?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: root
-    #第二数据源配置
+    # 第二数据源配置
     secondary:
       jdbc-url: jdbc:mysql://127.0.0.1:3306/test2?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: root
-  #jpa相关配置
+  # jpa相关配置
   jpa:
     database: mysql
     show-sql: true

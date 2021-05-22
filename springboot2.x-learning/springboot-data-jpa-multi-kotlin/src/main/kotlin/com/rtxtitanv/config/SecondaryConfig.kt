@@ -21,8 +21,8 @@ import javax.sql.DataSource
  */
 @Configuration
 @EnableTransactionManagement
-//entityManagerFactoryRef：指定实体管理器工厂，transactionManagerRef：指定事务管理器
-//basePackages：指定该数据源的repository所在包路径
+// entityManagerFactoryRef：指定实体管理器工厂，transactionManagerRef：指定事务管理器
+// basePackages：指定该数据源的repository所在包路径
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactorySecondary",
         transactionManagerRef = "transactionManagerSecondary",
         basePackages = ["com.rtxtitanv.repository.secondary"])
@@ -37,9 +37,9 @@ class SecondaryConfig(@Resource(name = "secondaryDataSource") private val second
     @Bean(name = ["entityManagerFactorySecondary"])
     fun entityManagerFactorySecondary(builder: EntityManagerFactoryBuilder): LocalContainerEntityManagerFactoryBean {
         return builder.dataSource(secondaryDataSource)
-                //指定组合jpaProperties和hibernateProperties配置的map对象
+                // 指定组合jpaProperties和hibernateProperties配置的map对象
                 .properties(vendorProperties)
-                //指定该数据源的实体类所在包路径
+                // 指定该数据源的实体类所在包路径
                 .packages("com.rtxtitanv.model.secondary")
                 .persistenceUnit("secondaryPersistenceUnit")
                 .build()
