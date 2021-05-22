@@ -94,8 +94,8 @@ public class JpaMultiTest {
      */
     @Test
     public void deleteTest() {
-        //primaryUserRepository.deleteById(1L);
-        //secondaryUserRepository.deleteById(3L);
+//        primaryUserRepository.deleteById(1L);
+//        secondaryUserRepository.deleteById(3L);
         primaryUserRepository.deleteAllInBatch();
         secondaryUserRepository.deleteAllInBatch();
     }
