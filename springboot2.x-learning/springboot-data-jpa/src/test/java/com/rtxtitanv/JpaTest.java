@@ -854,17 +854,17 @@ public class JpaTest {
         order1.setAccount(account);
         order2.setAccount(account);
         // 保存操作
-        // 由于account和order实体设置了级联保存
-        // 此处任意保存其中一个order，后台会自动保存order1、order2和关联的account
         logger.info("保存开始");
-        orderRepository.save(order1);
-        orderRepository.save(order2);
+//        // 由于account和order实体设置了级联保存
+//        // 此处任意保存其中一个order，后台会自动保存order1、order2和关联的account
+//        orderRepository.save(order1);
+//        orderRepository.save(order2);
         // 保存account，会自动保存关联的order1和order2
         accountRepository.save(account);
-        // 此处为account关联order1和order2保存之后再关联一个新的order3保存
-        account.getOrders().add(order3);
-        order3.setAccount(account);
-        orderRepository.save(order3);
+//        // 此处为account关联order1和order2保存之后再关联一个新的order3保存
+//        account.getOrders().add(order3);
+//        order3.setAccount(account);
+//        orderRepository.save(order3);
         logger.info("保存结束");
     }
 
