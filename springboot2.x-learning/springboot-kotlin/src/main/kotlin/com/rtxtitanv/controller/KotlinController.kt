@@ -33,4 +33,3 @@ class KotlinController(private val kotlinService: KotlinService) {
         return kotlinService.findUserByAge(age)
     }
 }
-
