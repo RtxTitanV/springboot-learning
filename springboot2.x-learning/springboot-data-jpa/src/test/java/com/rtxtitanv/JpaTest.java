@@ -531,15 +531,15 @@ public class JpaTest {
          * criteriaBuilder：查询条件构造器
          */
         List<User> userList = userRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
-            //user_name = "qwer123"
+            // user_name = "qwer123"
             Predicate predicate1 = criteriaBuilder.equal(root.get("userName"), "qwer123");
-            //email like %er%
+            // email like %er%
             Predicate predicate2 = criteriaBuilder.like(root.get("email"), "%er%");
-            //age between 15 and 25
+            // age between 15 and 25
             Predicate predicate3 = criteriaBuilder.between(root.get("age"), 15, 25);
-            //age >= 18
+            // age >= 18
             Predicate predicate4 = criteriaBuilder.ge(root.get("age"), 18);
-            //age <= 25
+            // age <= 25
             Predicate predicate5 = criteriaBuilder.le(root.get("age"), 25);
             return predicate5;
         });
@@ -559,7 +559,7 @@ public class JpaTest {
      */
     @Test
     public void findByConditionsTest() {
-        //手动模拟查询条件
+        // 手动模拟查询条件
 //        UserQuery userQuery = null;
         UserQuery userQuery = new UserQuery();
         List<Long> ids = new ArrayList<>();
@@ -575,46 +575,46 @@ public class JpaTest {
                 .setIdsQuery(ids).setAgesQuery(ages);
         logger.info("动态拼接多条件查询测试开始");
         List<User> userList = userRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
-            //如果userQuery为空或者userQuery所有属性均为空会自动生成where 1 = 1
+            // 如果userQuery为空或者userQuery所有属性均为空会自动生成where 1 = 1
             Predicate predicate = criteriaBuilder.conjunction();
-            //如果userQuery为空或者userQuery所有属性均为空会查询所有记录
+            // 如果userQuery为空或者userQuery所有属性均为空会查询所有记录
             if (userQuery != null) {
                 if (userQuery.getIdQuery() != null) {
-                    //notEqual查询
+                    // notEqual查询
                     predicate.getExpressions().add(criteriaBuilder.notEqual(root.get("id"), userQuery.getIdQuery()));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getUserNameQuery())) {
-                    //like查询
+                    // like查询
                     predicate.getExpressions().add(criteriaBuilder.like(root.get("userName"), "%" + userQuery.getUserNameQuery() + "%"));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getNickNameQuery())) {
-                    //notLike查询
+                    // notLike查询
                     predicate.getExpressions().add(criteriaBuilder.notLike(root.get("nickName"), "%" + userQuery.getNickNameQuery() + "%"));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getPassWordQuery())) {
-                    //equal查询
+                    // equal查询
                     predicate.getExpressions().add(criteriaBuilder.equal(root.get("passWord"), userQuery.getPassWordQuery()));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getEmailQuery())) {
-                    //notEqual查询
+                    // notEqual查询
                     predicate.getExpressions().add(criteriaBuilder.notEqual(root.get("email"), userQuery.getEmailQuery()));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getTelQuery())) {
-                    //like查询
+                    // like查询
                     predicate.getExpressions().add(criteriaBuilder.like(root.get("tel"), "%" + userQuery.getTelQuery()));
                 }
                 if (userQuery.getMinAgeQuery() != null && userQuery.getMaxAgeQuery() != null) {
-                    //between查询
+                    // between查询
                     predicate.getExpressions().add(criteriaBuilder.between(root.get("age"), userQuery.getMinAgeQuery(), userQuery.getMaxAgeQuery()));
                 } else if (userQuery.getMinAgeQuery() != null) {
-                    //>=查询 gt为>
+                    // >=查询 gt为>
                     predicate.getExpressions().add(criteriaBuilder.ge(root.get("age"), userQuery.getMinAgeQuery()));
                 } else if (userQuery.getMaxAgeQuery() != null) {
-                    //<=查询 lt为<
+                    // <=查询 lt为<
                     predicate.getExpressions().add(criteriaBuilder.le(root.get("age"), userQuery.getMaxAgeQuery()));
                 }
                 if (userQuery.getIdsQuery() != null && !userQuery.getIdsQuery().isEmpty()) {
-                    //in 批量查询
+                    // in 批量查询
                     predicate.getExpressions().add(criteriaBuilder.and(root.get("id").in(userQuery.getIdsQuery())));
                 }
                 if (userQuery.getAgesQuery() != null && !userQuery.getAgesQuery().isEmpty()) {
@@ -639,7 +639,7 @@ public class JpaTest {
      */
     @Test
     public void findByConditionsTest2() {
-        //手动模拟查询条件
+        // 手动模拟查询条件
 //        UserQuery userQuery = null;
         UserQuery userQuery = new UserQuery();
         List<Long> ids = new ArrayList<>();
@@ -656,46 +656,46 @@ public class JpaTest {
         logger.info("动态拼接多条件查询测试开始");
         List<User> userList = userRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
-            //sql语句会自动生成where 1 = 1
+            // sql语句会自动生成where 1 = 1
             predicates.add(criteriaBuilder.conjunction());
-            //如果userQuery为空或者userQuery所有属性均为空会查询所有记录
+            // 如果userQuery为空或者userQuery所有属性均为空会查询所有记录
             if (userQuery != null) {
                 if (userQuery.getIdQuery() != null) {
-                    //notEqual查询
+                    // notEqual查询
                     predicates.add(criteriaBuilder.notEqual(root.get("id"), userQuery.getIdQuery()));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getUserNameQuery())) {
-                    //like查询
+                    // like查询
                     predicates.add(criteriaBuilder.like(root.get("userName"), "%" + userQuery.getUserNameQuery() + "%"));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getNickNameQuery())) {
-                    //notLike查询
+                    // notLike查询
                     predicates.add(criteriaBuilder.notLike(root.get("nickName"), "%" + userQuery.getNickNameQuery() + "%"));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getPassWordQuery())) {
-                    //equal查询
+                    // equal查询
                     predicates.add(criteriaBuilder.equal(root.get("passWord"), userQuery.getPassWordQuery()));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getEmailQuery())) {
-                    //notEqual查询
+                    // notEqual查询
                     predicates.add(criteriaBuilder.notEqual(root.get("email"), userQuery.getEmailQuery()));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getTelQuery())) {
-                    //like查询
+                    // like查询
                     predicates.add(criteriaBuilder.like(root.get("tel"), "%" + userQuery.getTelQuery()));
                 }
                 if (userQuery.getMinAgeQuery() != null && userQuery.getMaxAgeQuery() != null) {
-                    //between查询
+                    // between查询
                     predicates.add(criteriaBuilder.between(root.get("age"), userQuery.getMinAgeQuery(), userQuery.getMaxAgeQuery()));
                 } else if (userQuery.getMinAgeQuery() != null) {
-                    //>=查询 gt为>
+                    // >=查询 gt为>
                     predicates.add(criteriaBuilder.ge(root.get("age"), userQuery.getMinAgeQuery()));
                 } else if (userQuery.getMaxAgeQuery() != null) {
-                    //<=查询 lt为<
+                    // <=查询 lt为<
                     predicates.add(criteriaBuilder.le(root.get("age"), userQuery.getMaxAgeQuery()));
                 }
                 if (userQuery.getIdsQuery() != null && !userQuery.getIdsQuery().isEmpty()) {
-                    //in 批量查询
+                    // in 批量查询
                     predicates.add(criteriaBuilder.and(root.get("id").in(userQuery.getIdsQuery())));
                 }
                 if (userQuery.getAgesQuery() != null && !userQuery.getAgesQuery().isEmpty()) {
@@ -724,7 +724,7 @@ public class JpaTest {
      */
     @Test
     public void findByConditionsPageAndSortTest() {
-        //手动模拟查询条件
+        // 手动模拟查询条件
 //        UserQuery userQuery = null;
         UserQuery userQuery = new UserQuery();
         List<Long> ids = new ArrayList<>();
@@ -738,58 +738,58 @@ public class JpaTest {
                 .setMinAgeQuery(null).setMaxAgeQuery(25).setIdQuery(null)
                 .setTelQuery("135").setEmailQuery("rt").setPassWordQuery("123")
                 .setIdsQuery(ids).setAgesQuery(ages);
-        //定义排序规则 先按age降序，再按tel升序，再按id降序
+        // 定义排序规则 先按age降序，再按tel升序，再按id降序
         Sort.Order orderAge = new Sort.Order(Sort.Direction.DESC,"age");
         Sort.Order orderTel = new Sort.Order(Sort.Direction.ASC,"tel");
         Sort.Order orderId = new Sort.Order(Sort.Direction.DESC,"id");
         Sort sort = Sort.by(orderAge, orderTel, orderId);
-        //定义分页参数，由于是测试第几页和每页记录数写死
+        // 定义分页参数，由于是测试第几页和每页记录数写死
         int pageNum = 3;
         int pageSize = 3;
-        //jpa分页从0页开始，页码需要-1
+        // jpa分页从0页开始，页码需要-1
         Pageable pageable = PageRequest.of(pageNum - 1 , pageSize, sort);
         logger.info("多条件排序分页查询测试开始");
         Page<User> page = userRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
-            //如果userQuery为空或者userQuery所有属性均为空会自动生成where 1 = 1
+            // 如果userQuery为空或者userQuery所有属性均为空会自动生成where 1 = 1
             Predicate predicate = criteriaBuilder.conjunction();
-            //如果userQuery为空或者userQuery所有属性均为空会查询所有记录
+            // 如果userQuery为空或者userQuery所有属性均为空会查询所有记录
             if (userQuery != null) {
                 if (userQuery.getIdQuery() != null) {
-                    //notEqual查询
+                    // notEqual查询
                     predicate.getExpressions().add(criteriaBuilder.notEqual(root.get("id"), userQuery.getIdQuery()));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getUserNameQuery())) {
-                    //like查询
+                    // like查询
                     predicate.getExpressions().add(criteriaBuilder.like(root.get("userName"), "%" + userQuery.getUserNameQuery() + "%"));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getNickNameQuery())) {
-                    //notLike查询
+                    // notLike查询
                     predicate.getExpressions().add(criteriaBuilder.notLike(root.get("nickName"), "%" + userQuery.getNickNameQuery() + "%"));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getPassWordQuery())) {
-                    //equal查询
+                    // equal查询
                     predicate.getExpressions().add(criteriaBuilder.equal(root.get("passWord"), userQuery.getPassWordQuery()));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getEmailQuery())) {
-                    //notEqual查询
+                    // notEqual查询
                     predicate.getExpressions().add(criteriaBuilder.notEqual(root.get("email"), userQuery.getEmailQuery()));
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.getTelQuery())) {
-                    //like查询
+                    // like查询
                     predicate.getExpressions().add(criteriaBuilder.like(root.get("tel"), "%" + userQuery.getTelQuery()));
                 }
                 if (userQuery.getMinAgeQuery() != null && userQuery.getMaxAgeQuery() != null) {
-                    //between查询
+                    // between查询
                     predicate.getExpressions().add(criteriaBuilder.between(root.get("age"), userQuery.getMinAgeQuery(), userQuery.getMaxAgeQuery()));
                 } else if (userQuery.getMinAgeQuery() != null) {
-                    //>=查询 gt为>
+                    // >=查询 gt为>
                     predicate.getExpressions().add(criteriaBuilder.ge(root.get("age"), userQuery.getMinAgeQuery()));
                 } else if (userQuery.getMaxAgeQuery() != null) {
-                    //<=查询 lt为<
+                    // <=查询 lt为<
                     predicate.getExpressions().add(criteriaBuilder.le(root.get("age"), userQuery.getMaxAgeQuery()));
                 }
                 if (userQuery.getIdsQuery() != null && !userQuery.getIdsQuery().isEmpty()) {
-                    //in 批量查询
+                    // in 批量查询
                     predicate.getExpressions().add(criteriaBuilder.and(root.get("id").in(userQuery.getIdsQuery())));
                 }
                 if (userQuery.getAgesQuery() != null && !userQuery.getAgesQuery().isEmpty()) {
@@ -814,11 +814,11 @@ public class JpaTest {
     /**
      * 多表关联一对多保存
      */
-    @Transactional //开始事务支持
-    @Rollback(false) //设置不回滚
+    @Transactional // 开始事务支持
+    @Rollback(false) // 设置不回滚
     @Test
     public void oneToManySaveTest() {
-        //封装保存数据
+        // 封装保存数据
         Account account = new Account();
         account.setAccountName("rtx_titan_v");
         account.setAccountPassword("123456");
@@ -848,20 +848,20 @@ public class JpaTest {
         order3.setOrderTotalPrice("1390");
         order3.setOrderItemCount(1);
         order3.setOrderAddr("北京西城区");
-        //关联操作
+        // 关联操作
         account.getOrders().add(order1);
         account.getOrders().add(order2);
         order1.setAccount(account);
         order2.setAccount(account);
-        //保存操作
-        //由于account和order实体设置了级联保存
-        //此处任意保存其中一个order，后台会自动保存order1、order2和关联的account
+        // 保存操作
+        // 由于account和order实体设置了级联保存
+        // 此处任意保存其中一个order，后台会自动保存order1、order2和关联的account
         logger.info("保存开始");
         orderRepository.save(order1);
         orderRepository.save(order2);
-        //保存account，会自动保存关联的order1和order2
+        // 保存account，会自动保存关联的order1和order2
         accountRepository.save(account);
-        //此处为account关联order1和order2保存之后再关联一个新的order3保存
+        // 此处为account关联order1和order2保存之后再关联一个新的order3保存
         account.getOrders().add(order3);
         order3.setAccount(account);
         orderRepository.save(order3);
@@ -871,12 +871,12 @@ public class JpaTest {
     /**
      * 多表关联一对多查询
      */
-    //解决延迟加载时Session已关闭出现的LazyInitializationException
+    // 解决延迟加载时Session已关闭出现的LazyInitializationException
     @Transactional
     @Rollback(false)
     @Test
     public void oneToManyFindTest() {
-        //查询一个账户，并获取账户的所有订单
+        // 查询一个账户，并获取账户的所有订单
         Optional<Account> accountOptional = accountRepository.findById(1L);
         if (!accountOptional.isPresent()) {
             logger.info("账户不存在");
@@ -888,7 +888,7 @@ public class JpaTest {
             logger.info("----------------订单信息----------------");
             account.getOrders().forEach(order -> logger.info(order.toString()));
         }
-        //查询一个订单，并获取订单所对应的账户
+        // 查询一个订单，并获取订单所对应的账户
         Optional<Order> orderOptional = orderRepository.findById(1L);
         if (!orderOptional.isPresent()) {
             logger.info("订单不存在");
@@ -901,11 +901,11 @@ public class JpaTest {
             String accountInfo = order.getAccount().toString();
             logger.info(accountInfo);
         }
-        //Specification多表关联查询
+        // Specification多表关联查询
         List<Account> accounts = accountRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
-            //orders为account关联对象名称，JoinType：连接方式，LEFT：左外连接，RIGHT：右外连接，INNER：内连接
+            // orders为account关联对象名称，JoinType：连接方式，LEFT：左外连接，RIGHT：右外连接，INNER：内连接
             Join<Account, Order> join = root.join("orders", JoinType.LEFT);
-            //distinct(true)：去除重复记录
+            // distinct(true)：去除重复记录
             criteriaQuery.distinct(true);
             return criteriaBuilder.equal(join.get("orderId").as(Long.class), 3L);
         });
@@ -928,7 +928,7 @@ public class JpaTest {
     @Rollback(false)
     @Test
     public void oneToManyUpdateTest() {
-        //通过一方更新多方的记录
+        // 通过一方更新多方的记录
         Optional<Account> accountOpt = accountRepository.findById(1L);
         if (!accountOpt.isPresent()) {
             logger.info("账号不存在");
@@ -941,7 +941,7 @@ public class JpaTest {
                 }
             });
         }
-        //通过多方更新一方记录
+        // 通过多方更新一方记录
         Optional<Order> orderOpt = orderRepository.findById(1L);
         if (!orderOpt.isPresent()) {
             logger.info("订单不存在");
@@ -959,12 +959,12 @@ public class JpaTest {
     @Rollback(false)
     @Test
     public void oneToManyDeleteTest() {
-        //account设置了级联删除，有多方关联时删除account将会同时删除关联的所有order
-        //如果account没有设置级联删除，有多方关联删除一方时，默认置外键为null，如果外键不允许
-        //为空，会报错，如果配置了放弃维护关联关系则不能删除
-        //accountRepository.deleteById(1L);
-        //只删除多方记录，直接删除会有问题，删除后再关联查询多方记录时没有生成删除语句
-        //orderRepository.deleteById(3L);
+//        // account设置了级联删除，有多方关联时删除account将会同时删除关联的所有order
+//        // 如果account没有设置级联删除，有多方关联删除一方时，默认置外键为null，如果外键不允许
+//        // 为空，会报错，如果配置了放弃维护关联关系则不能删除
+//        accountRepository.deleteById(1L);
+//        // 只删除多方记录，直接删除会有问题，删除后再关联查询多方记录时没有生成删除语句
+//        orderRepository.deleteById(3L);
         Optional<Account> accountOptional = accountRepository.findById(1L);
         if (!accountOptional.isPresent()) {
             logger.info("账号不存在");
@@ -973,7 +973,7 @@ public class JpaTest {
             Set<Order> orders = account.getOrders();
             logger.info("删除开始");
             for (Iterator<Order> iterator = orders.iterator(); iterator.hasNext(); ) {
-                //由于orphanRemoval = true，在一方关联多方的集合中移除多方，将会在多方删除这些记录
+                // 由于orphanRemoval = true，在一方关联多方的集合中移除多方，将会在多方删除这些记录
                 if (iterator.next().getOrderId().equals(1L)) {
                     iterator.remove();
                 }
@@ -1011,7 +1011,7 @@ public class JpaTest {
         menu3.setMenuName("确认按钮");
         menu3.setMenuIcon("方块");
         menu3.setMenuPath("http://123.123.44.56/xx");
-        //关联操作
+        // 关联操作
         role1.getMenus().add(menu1);
         role1.getMenus().add(menu3);
         role2.getMenus().add(menu2);
@@ -1024,9 +1024,9 @@ public class JpaTest {
         menu2.getRoles().add(role3);
         menu3.getRoles().add(role1);
         menu3.getRoles().add(role2);
-        //保存，role和menu均设置了级联保存
+        // 保存，role和menu均设置了级联保存
         menuRepository.save(menu1);
-        //roleRepository.save(role1); 和save menu一样
+        // roleRepository.save(role1); 和save menu一样
     }
 
     /**
@@ -1036,7 +1036,7 @@ public class JpaTest {
     @Rollback(false)
     @Test
     public void manyToManyFindTest() {
-        //查询一个角色，并获取角色的所有菜单
+        // 查询一个角色，并获取角色的所有菜单
         Optional<Role> roleOptional = roleRepository.findById(1L);
         if (!roleOptional.isPresent()) {
             logger.info("角色不存在");
@@ -1048,7 +1048,7 @@ public class JpaTest {
             logger.info("----------------菜单信息----------------");
             role.getMenus().forEach(menu -> logger.info(menu.toString()));
         }
-        //查询一个菜单，并获取菜单的角色
+        // 查询一个菜单，并获取菜单的角色
         Optional<Menu> menuOptional = menuRepository.findById(1L);
         if (!menuOptional.isPresent()) {
             logger.info("菜单不存在");
@@ -1060,11 +1060,11 @@ public class JpaTest {
             logger.info("----------------角色信息----------------");
             menu.getRoles().forEach(role -> logger.info(role.toString()));
         }
-        //Specification多表关联查询
+        // Specification多表关联查询
         List<Role> roles = roleRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
-            //menus为role关联对象名称，JoinType：连接方式，LEFT：左外连接，RIGHT：右外连接，INNER：内连接
+            // menus为role关联对象名称，JoinType：连接方式，LEFT：左外连接，RIGHT：右外连接，INNER：内连接
             Join<Role, Menu> join = root.join("menus", JoinType.LEFT);
-            //distinct(true)：去除重复记录
+            // distinct(true)：去除重复记录
             criteriaQuery.distinct(true);
             return criteriaBuilder.lt(join.get("menuId").as(Long.class), 3L);
         });
@@ -1092,8 +1092,8 @@ public class JpaTest {
             logger.info("角色不存在");
         } else {
             Role roles = roleOptional.get();
-            //通过id为1的role修改role关联的id为1的menu
-            //根据id为1的menu修改menu关联的id为3的role
+            // 通过id为1的role修改role关联的id为1的menu
+            // 根据id为1的menu修改menu关联的id为3的role
             roles.getMenus().forEach(menu -> {
                 if (menu.getMenuId().equals(1L)) {
                     menu.setMenuHidden(true);
@@ -1116,18 +1116,18 @@ public class JpaTest {
     @Rollback(false)
     @Test
     public void manyToManyDeleteTest() {
-        //准备删除的role
+        // 准备删除的role
         Optional<Role> roleOptional = roleRepository.findById(1L);
         if (!roleOptional.isPresent()) {
             logger.info("角色不存在");
         } else {
             Role role1 = roleOptional.get();
-            //关联关系解除（id为1的role-->id为1的menu，id为2的menu）
-            //删除中间表的关联记录
+            // 关联关系解除（id为1的role-->id为1的menu，id为2的menu）
+            // 删除中间表的关联记录
             role1.getMenus().forEach(menu -> {
                 menu.getRoles().remove(role1);
             });
-            //不删除role的情况，重新关联（id为1的role-->id为3的menu）
+            // 不删除role的情况，重新关联（id为1的role-->id为3的menu）
             /*Optional<Menu> menuOptional = menuRepository.findById(3L);
             if (!menuOptional.isPresent()) {
                 logger.info("菜单不存在");
@@ -1135,10 +1135,10 @@ public class JpaTest {
                 Menu menu3 = menuOptional.get();
                 role1.getMenus().add(menu3);
                 menu3.getRoles().add(role1);
-                //更新关联，可以省略，省略也会更新中间表关联关系
+                // 更新关联，可以省略，省略也会更新中间表关联关系
                 menuRepository.save(menu3);
             }*/
-            //删除role
+            // 删除role
             roleRepository.delete(role1);
         }
     }
