@@ -75,7 +75,7 @@ interface UserRepository : JpaRepository<User, Long>, JpaSpecificationExecutor<U
      * @param nickName 昵称
      * @return 删除的记录数
      */
-    //@Transactional：开启事务支持
+    // @Transactional：开启事务支持
     @Transactional(rollbackFor = [Exception::class])
     fun deleteByNickNameIgnoreCase(nickName: String? = null): Int
 
@@ -99,11 +99,11 @@ interface UserRepository : JpaRepository<User, Long>, JpaSpecificationExecutor<U
      * @param regTime 注册时间
      * @return 返回1表示插入成功
      */
-    //nativeQuery：是否使用本地sql，true表示使用本地sql，缺省默认值为false，不使用本地sql
-    //sql语句中的?占位符后的数字对应方法中的参数索引，从1开始
+    // nativeQuery：是否使用本地sql，true表示使用本地sql，缺省默认值为false，不使用本地sql
+    // sql语句中的?占位符后的数字对应方法中的参数索引，从1开始
     @Query(value = "insert into user(uid,user_name,pass_word,nick_name,age,email,tel,reg_time)" +
             " values(?1,?2,?3,?4,?5,?6,?7,?8)", nativeQuery = true)
-    //@Modifying：该注解标识该操作为一个插入更新删除操作，框架最终不会生成一个查询操作
+    // @Modifying：该注解标识该操作为一个插入更新删除操作，框架最终不会生成一个查询操作
     @Modifying
     @Transactional(rollbackFor = [Exception::class])
     fun insertUser(uid: String? = null, userName: String? = null, passWord: String? = null, nickName: String? = null, age: Int? = null, email: String? = null, tel: String? = null, regTime: String? = null): Int
@@ -115,8 +115,8 @@ interface UserRepository : JpaRepository<User, Long>, JpaSpecificationExecutor<U
      * @param sort 排序参数
      * @return List<NameOnly> 名称列表（projections接口NameOnly只包含用户名和昵称）
      */
-    //:为占位符，#{#Object} SpEL表达式将对象传递进sql语句
-    //此处有坑，注意一定要加别名，并且与实体类的实例域名一致，否则NameOnly实现中封装不进数据，查出来的值为null
+    // :为占位符，#{#Object} SpEL表达式将对象传递进sql语句
+    // 此处有坑，注意一定要加别名，并且与实体类的实例域名一致，否则NameOnly实现中封装不进数据，查出来的值为null
     @Query("select u.userName as userName, u.nickName as nickName from User u where u.age in :#{#ageList}")
     fun findNameByAgeIn(ageList: List<Int>? = null, sort: Sort? = null): List<NameOnly>
 
@@ -129,7 +129,7 @@ interface UserRepository : JpaRepository<User, Long>, JpaSpecificationExecutor<U
      * @param pageable 分页参数
      * @return List<NameOnly> 名称列表（projections接口NameOnly只包含用户名和昵称）
      */
-    //@Param注解的值与:占位符后的字符串一致，用于参数传递
+    // @Param注解的值与:占位符后的字符串一致，用于参数传递
     @Query(value = "select u.nick_name as nickName, u.user_name as userName from user u where u.nick_name like %:nickname% and u.user_name like %:username%",
             countQuery = "select count(u.nick_name) from user u where u.nick_name like %:nickname% and u.user_name like %:username%", nativeQuery = true)
     fun findNameByNickNameAndUserNameLike(@Param("nickname") nickName: String? = null, @Param("username") userName: String? = null, pageable: Pageable? = null): Page<NameOnly>
@@ -150,7 +150,7 @@ interface UserRepository : JpaRepository<User, Long>, JpaSpecificationExecutor<U
      * @param user 用户对象
      * @return
      */
-    //使用SpEL表达式传递对象属性至sql语句
+    // 使用SpEL表达式传递对象属性至sql语句
     @Query(value = "update user u set u.uid = :#{#user.uid}, u.user_name = :#{#user.userName}," +
             " u.pass_word = :#{#user.passWord}, u.nick_name = :#{#user.nickName}," +
             " u.email = :#{#user.email}, u.age = :#{#user.age}," +
@@ -164,8 +164,8 @@ interface UserRepository : JpaRepository<User, Long>, JpaSpecificationExecutor<U
      * @param ids
      * @return 删除记录数
      */
-    //#{#entityName} 默认为实体类的名称，如果使用了@Entity(name = "xxx")来注解实体类
-    //#{#entityName}的值为xxx
+    // #{#entityName} 默认为实体类的名称，如果使用了@Entity(name = "xxx")来注解实体类
+    // #{#entityName}的值为xxx
     @Query("delete from #{#entityName} u where u.id in ?1")
     @Modifying
     @Transactional(rollbackFor = [Exception::class])

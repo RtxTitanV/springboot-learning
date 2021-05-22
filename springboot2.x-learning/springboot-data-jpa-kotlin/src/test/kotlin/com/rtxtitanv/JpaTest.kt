@@ -31,7 +31,7 @@ import java.util.*
 @SpringBootTest(classes = [JpaApplication::class])
 class JpaTest {
 
-    //单元测试类不能通过构造函数注入，使用@Autowired注入时需声明属性为lateinit
+    // 单元测试类不能通过构造函数注入，使用@Autowired注入时需声明属性为lateinit
     @Autowired
     private lateinit var userRepository: UserRepository
     @Autowired
@@ -106,7 +106,7 @@ class JpaTest {
             logger.info("该用户不存在")
         } else {
             val user = userOptional.get()
-            //$符号,字符串模板写法,将变量插入字符串
+            // $符号,字符串模板写法,将变量插入字符串
             logger.info("修改前的记录: $user")
             logger.info("修改一条用户记录开始")
             user.nickName = "6wer23a"
@@ -501,17 +501,17 @@ class JpaTest {
          * criteriaBuilder：查询条件构造器
          */
         val userList = userRepository.findAll { root, criteriaQuery, criteriaBuilder ->
-            //user_name = "qwer123"
+            // user_name = "qwer123"
             val predicate1 = criteriaBuilder.equal(root.get<String>("userName"), "qwer123")
-            //email like %er%
+            // email like %er%
             val predicate2 = criteriaBuilder.like(root.get<String>("email"), "%er%")
-            //age between 15 and 25
+            // age between 15 and 25
             val predicate3 = criteriaBuilder.between(root.get<Int>("age"), 15, 25)
-            //age >= 18
+            // age >= 18
             val predicate4 = criteriaBuilder.ge(root.get<Int>("age"), 18)
-            //age <= 25
+            // age <= 25
             val predicate5 = criteriaBuilder.le(root.get<Int>("age"), 25)
-            //从lambda表达式中返回一个值 等价于 return@findAll predicate1
+            // 从lambda表达式中返回一个值 等价于 return@findAll predicate1
             predicate5
         }
         if (userList.isEmpty()) {
@@ -529,7 +529,7 @@ class JpaTest {
      */
     @Test
     fun findByConditionsTest() {
-        //手动模拟查询条件
+        // 手动模拟查询条件
 //        val userQuery : UserQuery? = null
         val userQuery = UserQuery()
         val ids = listOf(1L, 2L, 5L)
@@ -546,46 +546,46 @@ class JpaTest {
         userQuery.agesQuery = ages
         logger.info("动态拼接多条件查询测试开始")
         val userList = userRepository.findAll { root, criteriaQuery, criteriaBuilder ->
-            //如果userQuery为空或者userQuery所有属性均为空会自动生成where 1 = 1
+            // 如果userQuery为空或者userQuery所有属性均为空会自动生成where 1 = 1
             val predicate = criteriaBuilder.conjunction()
-            //如果userQuery为空或者userQuery所有属性均为空会查询所有记录
+            // 如果userQuery为空或者userQuery所有属性均为空会查询所有记录
             if (userQuery != null) {
                 if (userQuery.idQuery != null) {
-                    //notEqual查询 !!：非空断言运算符，将任何值转换为非空类型，若该值为空则抛出异常
+                    // notEqual查询 !!：非空断言运算符，将任何值转换为非空类型，若该值为空则抛出异常
                     predicate.expressions.add(criteriaBuilder.notEqual(root.get<Long>("id"), userQuery.idQuery!!))
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.userNameQuery)) {
-                    //like查询
+                    // like查询
                     predicate.expressions.add(criteriaBuilder.like(root.get<String>("userName"), "%${userQuery.userNameQuery}%"))
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.nickNameQuery)) {
-                    //notLike查询
+                    // notLike查询
                     predicate.expressions.add(criteriaBuilder.notLike(root.get<String>("nickName"), "%${userQuery.nickNameQuery}%"))
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.passWordQuery)) {
-                    //equal查询
+                    // equal查询
                     predicate.expressions.add(criteriaBuilder.equal(root.get<String>("passWord"), userQuery.passWordQuery))
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.emailQuery)) {
-                    //notEqual查询
+                    // notEqual查询
                     predicate.expressions.add(criteriaBuilder.notEqual(root.get<String>("email"), userQuery.emailQuery))
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.telQuery)) {
-                    //like查询
+                    // like查询
                     predicate.expressions.add(criteriaBuilder.like(root.get<String>("tel"), "%${userQuery.telQuery}"))
                 }
                 if (userQuery.minAgeQuery != null && userQuery.maxAgeQuery != null) {
-                    //between查询
+                    // between查询
                     predicate.expressions.add(criteriaBuilder.between(root.get<Int>("age"), userQuery.minAgeQuery!!, userQuery.maxAgeQuery!!))
                 } else if (userQuery.minAgeQuery != null) {
-                    //>=查询 gt为>
+                    // >=查询 gt为>
                     predicate.expressions.add(criteriaBuilder.ge(root.get<Int>("age"), userQuery.minAgeQuery!!))
                 } else if (userQuery.maxAgeQuery != null) {
-                    //<=查询 lt为<
+                    // <=查询 lt为<
                     predicate.expressions.add(criteriaBuilder.le(root.get<Int>("age"), userQuery.maxAgeQuery!!))
                 }
                 if (userQuery.idsQuery != null && !userQuery.idsQuery!!.isEmpty()) {
-                    //in 批量查询 `in`：in在Kotlin为关键字用反引号转义
+                    // in 批量查询 `in`：in在Kotlin为关键字用反引号转义
                     predicate.expressions.add(criteriaBuilder.and(root.get<Long>("id").`in`(userQuery.idsQuery!!)))
                 }
                 if (userQuery.agesQuery != null && !userQuery.agesQuery!!.isEmpty()) {
@@ -608,7 +608,7 @@ class JpaTest {
      */
     @Test
     fun findByConditionsTest2() {
-        //手动模拟查询条件
+        // 手动模拟查询条件
 //        val userQuery : UserQuery? = null
         val userQuery = UserQuery()
         val ids = listOf(1L, 2L, 5L)
@@ -625,9 +625,9 @@ class JpaTest {
         userQuery.agesQuery = ages
         logger.info("动态拼接多条件查询测试开始")
         val userList = userRepository.findAll { root, criteriaQuery, criteriaBuilder ->
-            //sql语句会自动生成where 1 = 1
+            // sql语句会自动生成where 1 = 1
             val predicates = mutableListOf(criteriaBuilder.conjunction())
-            //如果userQuery为空或者userQuery所有属性均为空会查询所有记录
+            // 如果userQuery为空或者userQuery所有属性均为空会查询所有记录
             if (userQuery != null) {
                 if (userQuery.idQuery != null) {
                     predicates.add(criteriaBuilder.notEqual(root.get<Long>("id"), userQuery.idQuery!!))
@@ -683,7 +683,7 @@ class JpaTest {
      */
     @Test
     fun findByConditionsPageAndSortTest() {
-        //手动模拟查询条件
+        // 手动模拟查询条件
 //        val userQuery : UserQuery? = null
         val userQuery = UserQuery()
         val ids = listOf(1L, 2L, 5L)
@@ -698,58 +698,58 @@ class JpaTest {
         userQuery.passWordQuery = "123"
         userQuery.idsQuery = ids
         userQuery.agesQuery = ages
-        //定义排序规则 先按age降序，再按tel升序，再按id降序
+        // 定义排序规则 先按age降序，再按tel升序，再按id降序
         val orderAge = Sort.Order(Sort.Direction.DESC, "age")
         val orderTel = Sort.Order(Sort.Direction.ASC, "tel")
         val orderId = Sort.Order(Sort.Direction.DESC, "id")
         val sort = Sort.by(orderAge, orderTel, orderId)
-        //定义分页参数，由于是测试第几页和每页记录数写死
+        // 定义分页参数，由于是测试第几页和每页记录数写死
         val pageNum = 3
         val pageSize = 3
-        //jpa分页从0页开始，页码需要-1
+        // jpa分页从0页开始，页码需要-1
         val pageable: Pageable = PageRequest.of(pageNum - 1, pageSize, sort)
         logger.info("多条件排序分页查询测试开始")
         val page = userRepository.findAll({ root, criteriaQuery, criteriaBuilder ->
-            //如果userQuery为空或者userQuery所有属性均为空会自动生成where 1 = 1
+            // 如果userQuery为空或者userQuery所有属性均为空会自动生成where 1 = 1
             val predicate = criteriaBuilder.conjunction()
-            //如果userQuery为空或者userQuery所有属性均为空会查询所有记录
+            // 如果userQuery为空或者userQuery所有属性均为空会查询所有记录
             if (userQuery != null) {
                 if (userQuery.idQuery != null) {
-                    //notEqual查询 !!：非空断言运算符，将任何值转换为非空类型，若该值为空则抛出异常
+                    // notEqual查询 !!：非空断言运算符，将任何值转换为非空类型，若该值为空则抛出异常
                     predicate.expressions.add(criteriaBuilder.notEqual(root.get<Long>("id"), userQuery.idQuery!!))
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.userNameQuery)) {
-                    //like查询
+                    // like查询
                     predicate.expressions.add(criteriaBuilder.like(root.get<String>("userName"), "%${userQuery.userNameQuery}%"))
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.nickNameQuery)) {
-                    //notLike查询
+                    // notLike查询
                     predicate.expressions.add(criteriaBuilder.notLike(root.get<String>("nickName"), "%${userQuery.nickNameQuery}%"))
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.passWordQuery)) {
-                    //equal查询
+                    // equal查询
                     predicate.expressions.add(criteriaBuilder.equal(root.get<String>("passWord"), userQuery.passWordQuery))
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.emailQuery)) {
-                    //notEqual查询
+                    // notEqual查询
                     predicate.expressions.add(criteriaBuilder.notEqual(root.get<String>("email"), userQuery.emailQuery))
                 }
                 if (!StringUtils.isNullOrEmpty(userQuery.telQuery)) {
-                    //like查询
+                    // like查询
                     predicate.expressions.add(criteriaBuilder.like(root.get<String>("tel"), "%${userQuery.telQuery}"))
                 }
                 if (userQuery.minAgeQuery != null && userQuery.maxAgeQuery != null) {
-                    //between查询
+                    // between查询
                     predicate.expressions.add(criteriaBuilder.between(root.get<Int>("age"), userQuery.minAgeQuery!!, userQuery.maxAgeQuery!!))
                 } else if (userQuery.minAgeQuery != null) {
-                    //>=查询 gt为>
+                    // >=查询 gt为>
                     predicate.expressions.add(criteriaBuilder.ge(root.get<Int>("age"), userQuery.minAgeQuery!!))
                 } else if (userQuery.maxAgeQuery != null) {
-                    //<=查询 lt为<
+                    // <=查询 lt为<
                     predicate.expressions.add(criteriaBuilder.le(root.get<Int>("age"), userQuery.maxAgeQuery!!))
                 }
                 if (userQuery.idsQuery != null && !userQuery.idsQuery!!.isEmpty()) {
-                    //in 批量查询 `in`：in在Kotlin为关键字用反引号转义
+                    // in 批量查询 `in`：in在Kotlin为关键字用反引号转义
                     predicate.expressions.add(criteriaBuilder.and(root.get<Long>("id").`in`(userQuery.idsQuery!!)))
                 }
                 if (userQuery.agesQuery != null && !userQuery.agesQuery!!.isEmpty()) {
@@ -771,11 +771,11 @@ class JpaTest {
     /**
      * 多表关联一对多保存
      */
-    @Transactional //开启事务支持
-    @Rollback(false) //设置不回滚
+    @Transactional // 开启事务支持
+    @Rollback(false) // 设置不回滚
     @Test
     fun oneToManySaveTest() {
-        //封装保存数据
+        // 封装保存数据
         val account = Account()
         account.accountName = "rtx_titan_v"
         account.accountPassword = "123456"
@@ -805,20 +805,20 @@ class JpaTest {
         order3.orderTotalPrice = "1390"
         order3.orderItemCount = 1
         order3.orderAddr = "北京西城区"
-        //关联操作
+        // 关联操作
         account.orders.add(order1)
         account.orders.add(order2)
         order1.account = account
         order2.account = account
-        //保存操作
-        //由于account和order实体设置了级联保存
-        //此处任意保存其中一个order，后台会自动保存order1、order2和关联的account
+        // 保存操作
+        // 由于account和order实体设置了级联保存
+        // 此处任意保存其中一个order，后台会自动保存order1、order2和关联的account
         logger.info("保存开始")
         orderRepository.save(order1)
         orderRepository.save(order2)
-        //保存account，会自动保存关联的order1和order2
+        // 保存account，会自动保存关联的order1和order2
         accountRepository.save(account)
-        //此处为account关联order1和order2保存之后再关联一个新的order3保存
+        // 此处为account关联order1和order2保存之后再关联一个新的order3保存
         account.orders.add(order3)
         order3.account = account
         orderRepository.save(order3)
@@ -828,12 +828,12 @@ class JpaTest {
     /**
      * 多表关联一对多查询
      */
-    //解决延迟加载时Session已关闭出现的LazyInitializationException
+    // 解决延迟加载时Session已关闭出现的LazyInitializationException
     @Transactional
     @Rollback(false)
     @Test
     fun oneToManyFindTest() {
-        //查询一个账户，并获取账户的所有订单
+        // 查询一个账户，并获取账户的所有订单
         val accountOptional = accountRepository.findById(1L)
         if (!accountOptional.isPresent) {
             logger.info("账户不存在")
@@ -845,7 +845,7 @@ class JpaTest {
             logger.info("----------------订单信息----------------")
             account.orders.forEach { order -> logger.info(order.toString()) }
         }
-        //查询一个订单，并获取订单所对应的账户
+        // 查询一个订单，并获取订单所对应的账户
         val orderOptional = orderRepository.findById(1L)
         if (!orderOptional.isPresent) {
             logger.info("订单不存在")
@@ -867,7 +867,7 @@ class JpaTest {
     @Rollback(false)
     @Test
     fun oneToManyUpdateTest() {
-        //通过一方更新多方的记录
+        // 通过一方更新多方的记录
         val accountOpt = accountRepository.findById(1L)
         if (!accountOpt.isPresent) {
             logger.info("账号不存在")
@@ -879,7 +879,7 @@ class JpaTest {
                 }
             } }
         }
-        //通过多方更新一方记录
+        // 通过多方更新一方记录
         val orderOpt = orderRepository.findById(1L)
         if (!orderOpt.isPresent) {
             logger.info("订单不存在")
@@ -896,12 +896,12 @@ class JpaTest {
     @Rollback(false)
     @Test
     fun oneToManyDeleteTest() {
-        //account设置了级联删除，有多方关联时删除account将会同时删除关联的所有order
-        //如果account没有设置级联删除，有多方关联删除一方时，默认置外键为null，如果外键不允许
-        //为空,会报错，如果配置了放弃维护关联关系则不能删除
-        //accountRepository.deleteById(1L)
-        //只删除多方记录，直接删除会有问题，删除后再关联查询多方记录时没有生成删除语句
-        //orderRepository.deleteById(3L)
+//        // account设置了级联删除，有多方关联时删除account将会同时删除关联的所有order
+//        // 如果account没有设置级联删除，有多方关联删除一方时，默认置外键为null，如果外键不允许
+//        // 为空,会报错，如果配置了放弃维护关联关系则不能删除
+//        accountRepository.deleteById(1L)
+//        // 只删除多方记录，直接删除会有问题，删除后再关联查询多方记录时没有生成删除语句
+//        orderRepository.deleteById(3L)
         val accountOptional = accountRepository.findById(1L)
         if (!accountOptional.isPresent) {
             logger.info("账号不存在")
@@ -909,10 +909,10 @@ class JpaTest {
             val account = accountOptional.get()
             val orders = account.orders
             logger.info("删除开始")
-            //可变迭代器（扩展自Iterator的MutableIterator，在迭代时可以删除，插入和替换元素）遍历可变集合
+            // 可变迭代器（扩展自Iterator的MutableIterator，在迭代时可以删除，插入和替换元素）遍历可变集合
             val mutableIterator = orders.iterator()
             while (mutableIterator.hasNext()) {
-                //由于orphanRemoval = true，在一方关联多方的集合中移除多方，将会在多方删除这些记录
+                // 由于orphanRemoval = true，在一方关联多方的集合中移除多方，将会在多方删除这些记录
                 if (mutableIterator.next().orderId == 1L) {
                     mutableIterator.remove()
                 }
@@ -950,7 +950,7 @@ class JpaTest {
         menu3.menuName = "确认按钮"
         menu3.menuIcon = "方块"
         menu3.menuPath = "http://123.123.44.56/xx"
-        //关联操作
+        // 关联操作
         role1.menus.add(menu1)
         role1.menus.add(menu3)
         role2.menus.add(menu2)
@@ -963,9 +963,9 @@ class JpaTest {
         menu2.roles.add(role3)
         menu3.roles.add(role1)
         menu3.roles.add(role2)
-        //保存，role和menu均设置了级联保存
+        // 保存，role和menu均设置了级联保存
         menuRepository.save(menu1)
-        //roleRepository.save(role1) 和save menu一样
+        // roleRepository.save(role1) 和save menu一样
     }
 
     /**
@@ -975,7 +975,7 @@ class JpaTest {
     @Rollback(false)
     @Test
     fun manyToManyFindTest() {
-        //查询一个角色，并获取角色的所有菜单
+        // 查询一个角色，并获取角色的所有菜单
         val roleOptional = roleRepository.findById(1L)
         if (!roleOptional.isPresent) {
             logger.info("角色不存在")
@@ -987,7 +987,7 @@ class JpaTest {
             logger.info("----------------菜单信息----------------")
             role.menus.forEach { menu -> logger.info(menu.toString()) }
         }
-        //查询一个菜单，并获取菜单的角色
+        // 查询一个菜单，并获取菜单的角色
         val menuOptional = menuRepository.findById(1L)
         if (!menuOptional.isPresent) {
             logger.info("菜单不存在")
@@ -1013,8 +1013,8 @@ class JpaTest {
             logger.info("角色不存在")
         } else {
             val roles = roleOptional.get()
-            //通过id为1的role修改role关联的id为1的menu
-            //根据id为1的menu修改menu关联的id为3的role
+            // 通过id为1的role修改role关联的id为1的menu
+            // 根据id为1的menu修改menu关联的id为3的role
             roles.menus.forEach { menu -> kotlin.run{
                 if (menu.menuId == 1L) {
                     menu.menuHidden = true
@@ -1037,18 +1037,18 @@ class JpaTest {
     @Rollback(false)
     @Test
     fun manyToManyDeleteTest() {
-        //准备删除的role
+        // 准备删除的role
         val roleOptional = roleRepository.findById(1L)
         if (!roleOptional.isPresent) {
             logger.info("角色不存在")
         } else {
             val role1 = roleOptional.get()
-            //关联关系解除（id为1的role-->id为1的menu，id为2的menu）
-            //删除中间表的关联记录
+            // 关联关系解除（id为1的role-->id为1的menu，id为2的menu）
+            // 删除中间表的关联记录
             role1.menus.forEach { menu -> kotlin.run {
                 menu.roles.remove(role1)
             } }
-            //不删除role的情况，重新关联（id为1的role-->id为3的menu）
+            // 不删除role的情况，重新关联（id为1的role-->id为3的menu）
             /*val menuOptional = menuRepository.findById(3L)
             if (!menuOptional.isPresent) {
                 logger.info("菜单不存在")
@@ -1056,12 +1056,11 @@ class JpaTest {
                 val menu3 = menuOptional.get()
                 role1.menus.add(menu3)
                 menu3.roles.add(role1)
-                //更新关联，可以省略，省略也会更新中间表关联关系
+                // 更新关联，可以省略，省略也会更新中间表关联关系
                 menuRepository.save(menu3)
             }*/
-            //删除role
+            // 删除role
             roleRepository.delete(role1)
         }
     }
 }
-
