@@ -27,8 +27,7 @@ import java.util.Map;
 // entityManagerFactoryRef：指定实体管理器工厂，transactionManagerRef：指定事务管理器
 // basePackages：指定该数据源的repository所在包路径
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactoryPrimary",
-        transactionManagerRef = "transactionManagerPrimary",
-        basePackages = {"com.rtxtitanv.repository.primary"})
+    transactionManagerRef = "transactionManagerPrimary", basePackages = {"com.rtxtitanv.repository.primary"})
 public class PrimaryConfig {
 
     @Resource(name = "primaryDataSource")
@@ -38,6 +37,7 @@ public class PrimaryConfig {
 
     /**
      * 配置第一数据源实体管理工厂的bean
+     *
      * @param builder EntityManagerFactoryBuilder
      * @return LocalContainerEntityManagerFactoryBean
      */
@@ -45,16 +45,15 @@ public class PrimaryConfig {
     @Primary // 标识为主数据源（主库对应的数据源）
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary(EntityManagerFactoryBuilder builder) {
         return builder.dataSource(primaryDataSource)
-                // 指定组合jpaProperties和hibernateProperties配置的map对象
-                .properties(vendorProperties)
-                // 指定该数据源的实体类所在包路径
-                .packages("com.rtxtitanv.model.primary")
-                .persistenceUnit("primaryPersistenceUnit")
-                .build();
+            // 指定组合jpaProperties和hibernateProperties配置的map对象
+            .properties(vendorProperties)
+            // 指定该数据源的实体类所在包路径
+            .packages("com.rtxtitanv.model.primary").persistenceUnit("primaryPersistenceUnit").build();
     }
 
     /**
      * 配置第一数据源实体管理器
+     *
      * @param builder EntityManagerFactoryBuilder
      * @return EntityManager
      */
@@ -66,6 +65,7 @@ public class PrimaryConfig {
 
     /**
      * 配置第一数据源事务管理器
+     *
      * @param builder EntityManagerFactoryBuilder
      * @return PlatformTransactionManager
      */

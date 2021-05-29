@@ -37,20 +37,13 @@ public class Menu {
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     // 配置中间表，joinColumns：中间表的外键字段关联当前实体类所对应表的主键字段
     // inverseJoinColumns：中间表的外键字段关联对方表的主键字段
-    @JoinTable(name = "role_menu",
-            joinColumns = @JoinColumn(name = "menu_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "role_menu", joinColumns = @JoinColumn(name = "menu_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     @Override
     public String toString() {
-        return "Menu{" +
-                "menuId=" + menuId +
-                ", menuName='" + menuName + '\'' +
-                ", menuPath='" + menuPath + '\'' +
-                ", menuHidden=" + menuHidden +
-                ", menuParentId=" + menuParentId +
-                ", menuIcon='" + menuIcon + '\'' +
-                '}';
+        return "Menu{" + "menuId=" + menuId + ", menuName='" + menuName + '\'' + ", menuPath='" + menuPath + '\''
+            + ", menuHidden=" + menuHidden + ", menuParentId=" + menuParentId + ", menuIcon='" + menuIcon + '\'' + '}';
     }
 }

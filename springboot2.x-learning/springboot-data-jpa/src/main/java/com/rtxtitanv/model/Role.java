@@ -33,10 +33,6 @@ public class Role {
 
     @Override
     public String toString() {
-        return "Role{" +
-                "roleId=" + roleId +
-                ", roleName='" + roleName + '\'' +
-                ", roleType='" + roleType + '\'' +
-                '}';
+        return "Role{" + "roleId=" + roleId + ", roleName='" + roleName + '\'' + ", roleType='" + roleType + '\'' + '}';
     }
 }

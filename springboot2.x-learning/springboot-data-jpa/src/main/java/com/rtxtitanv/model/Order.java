@@ -42,14 +42,8 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", orderName='" + orderName + '\'' +
-                ", orderDescription='" + orderDescription + '\'' +
-                ", orderStatus='" + orderStatus + '\'' +
-                ", orderTotalPrice='" + orderTotalPrice + '\'' +
-                ", orderItemCount=" + orderItemCount +
-                ", orderAddr='" + orderAddr + '\'' +
-                '}';
+        return "Order{" + "orderId=" + orderId + ", orderName='" + orderName + '\'' + ", orderDescription='"
+            + orderDescription + '\'' + ", orderStatus='" + orderStatus + '\'' + ", orderTotalPrice='" + orderTotalPrice
+            + '\'' + ", orderItemCount=" + orderItemCount + ", orderAddr='" + orderAddr + '\'' + '}';
     }
 }

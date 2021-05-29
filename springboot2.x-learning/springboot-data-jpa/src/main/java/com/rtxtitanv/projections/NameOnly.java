@@ -9,5 +9,6 @@ package com.rtxtitanv.projections;
  */
 public interface NameOnly {
     String getUserName();
+
     String getNickName();
 }

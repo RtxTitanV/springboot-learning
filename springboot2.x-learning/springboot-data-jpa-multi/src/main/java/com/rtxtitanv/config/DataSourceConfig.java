@@ -30,6 +30,7 @@ public class DataSourceConfig {
 
     /**
      * 配置第一数据源
+     *
      * @return 数据源
      */
     @Bean(name = "primaryDataSource")
@@ -43,6 +44,7 @@ public class DataSourceConfig {
 
     /**
      * 配置第二数据源
+     *
      * @return 数据源
      */
     @Bean(name = "secondaryDataSource")
@@ -53,6 +55,7 @@ public class DataSourceConfig {
 
     /**
      * 配置 组合jpaProperties和hibernateProperties配置的map对象
+     *
      * @return 组合jpaProperties和hibernateProperties配置的map
      */
     @Bean(name = "vendorProperties")

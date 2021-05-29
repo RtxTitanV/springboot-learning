@@ -26,8 +26,7 @@ import java.util.Map;
 // entityManagerFactoryRef：指定实体管理器工厂，transactionManagerRef：指定事务管理器
 // basePackages：指定该数据源的repository所在包路径
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactorySecondary",
-        transactionManagerRef = "transactionManagerSecondary",
-        basePackages = {"com.rtxtitanv.repository.secondary"})
+    transactionManagerRef = "transactionManagerSecondary", basePackages = {"com.rtxtitanv.repository.secondary"})
 public class SecondaryConfig {
 
     @Resource(name = "secondaryDataSource")
@@ -37,22 +36,22 @@ public class SecondaryConfig {
 
     /**
      * 配置第二数据源实体管理工厂的bean
+     *
      * @param builder EntityManagerFactoryBuilder
      * @return LocalContainerEntityManagerFactoryBean
      */
     @Bean(name = "entityManagerFactorySecondary")
     public LocalContainerEntityManagerFactoryBean entityManagerFactorySecondary(EntityManagerFactoryBuilder builder) {
         return builder.dataSource(secondaryDataSource)
-                // 指定组合jpaProperties和hibernateProperties配置的map对象
-                .properties(vendorProperties)
-                // 指定该数据源的实体类所在包路径
-                .packages("com.rtxtitanv.model.secondary")
-                .persistenceUnit("secondaryPersistenceUnit")
-                .build();
+            // 指定组合jpaProperties和hibernateProperties配置的map对象
+            .properties(vendorProperties)
+            // 指定该数据源的实体类所在包路径
+            .packages("com.rtxtitanv.model.secondary").persistenceUnit("secondaryPersistenceUnit").build();
     }
 
     /**
      * 配置第二数据源实体管理器
+     *
      * @param builder EntityManagerFactoryBuilder
      * @return EntityManager
      */
@@ -63,6 +62,7 @@ public class SecondaryConfig {
 
     /**
      * 配置第二数据源事务管理器
+     *
      * @param builder EntityManagerFactoryBuilder
      * @return PlatformTransactionManager
      */
