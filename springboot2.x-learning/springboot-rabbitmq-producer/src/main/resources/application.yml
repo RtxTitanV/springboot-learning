@@ -1,13 +1,13 @@
 spring:
   rabbitmq:
-    #配置RabbitMq的连接信息
+    # 配置RabbitMq的连接信息
     host: 47.112.201.157
     port: 5672
     username: admin
     password: admin
     virtual-host: /
-    #配置发送方确认机制
-    #设置confirm类型为correlated，确认消息是否到达交换机
+    # 配置发送方确认机制
+    # 设置confirm类型为correlated，确认消息是否到达交换机
     publisher-confirm-type: correlated
-    #启用return模式，确认消息是否到达队列
+    # 启用return模式，确认消息是否到达队列
     publisher-returns: true

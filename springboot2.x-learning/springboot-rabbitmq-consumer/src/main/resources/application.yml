@@ -1,6 +1,6 @@
 spring:
   rabbitmq:
-    #配置RabbitMq的连接信息
+    # 配置RabbitMq的连接信息
     host: 47.112.201.157
     port: 5672
     username: admin
@@ -8,16 +8,16 @@ spring:
     virtual-host: /
 #    listener:
 #      simple:
-#        #消费端限流配置，每个consumer在单位时间内接收的消息数，默认为250
+#        # 消费端限流配置，每个consumer在单位时间内接收的消息数，默认为250
 #        prefetch: 50
-#        #配置并发消费
-#        #并发消费者最小数量
+#        # 配置并发消费
+#        # 并发消费者最小数量
 #        concurrency: 5
-#        #并发消费者最大数量
+#        # 并发消费者最大数量
 #        max-concurrency: 10
-#        #配置接收方确认机制
-#        #NONE：自动确认，MANUAL：手动确认，AUTO：根据异常情况确认
-#        #acknowledgeMode设置为手动模式
+#        # 配置接收方确认机制
+#        # NONE：自动确认，MANUAL：手动确认，AUTO：根据异常情况确认
+#        # acknowledgeMode设置为手动模式
 #        acknowledge-mode: manual
 #      direct:
 #        acknowledge-mode: manual

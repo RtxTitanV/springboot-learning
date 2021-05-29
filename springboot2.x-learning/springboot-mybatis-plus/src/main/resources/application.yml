@@ -11,16 +11,16 @@ spring:
 
 # MyBatis-Plus配置
 mybatis-plus:
-  #  # MyBatis配置文件位置
-  #  config-location: classpath:mybatis/mybatis-config.xml
+#  # MyBatis配置文件位置
+#  config-location: classpath:mybatis/mybatis-config.xml
   # MyBatis Mapper所对应的XML文件位置
   mapper-locations: classpath*:mybatis/mapper/*.xml
   # MyBaits别名包扫描路径，通过该属性可以给包中的类注册别名
   type-aliases-package: com.rtxtitanv.model
   global-config:
     db-config:
-      #      # 全局逻辑删除的实体字段名
-      #      logic-delete-field: deleted
+#      # 全局逻辑删除的实体字段名
+#      logic-delete-field: deleted
       # 逻辑已删除值，默认为1
       logic-delete-value: 1
       # 逻辑未删除值，默认为0
