@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.listener.ConcurrencyListener
  * @description 用于手动确认模式的消息监听类，需实现ChannelAwareMessageListener接口
  * @date 2021/4/22 17:58

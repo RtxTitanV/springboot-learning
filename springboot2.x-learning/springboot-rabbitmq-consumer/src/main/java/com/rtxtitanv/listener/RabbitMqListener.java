@@ -15,7 +15,7 @@ import java.io.IOException;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.listener.RabbitMqListener
  * @description 用于监听队列
  * @date 2021/4/17 17:47

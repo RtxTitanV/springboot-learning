@@ -22,7 +22,7 @@ public class RabbitMqConfig {
      */
     @Bean(name = "simpleQueue")
     public Queue simpleQueue() {
-        /**
+        /*
          * 参数明细
          * 1.name：队列名称
          * 2.durable：是否持久化队列，true表示持久化，false表示不持久化
@@ -49,7 +49,7 @@ public class RabbitMqConfig {
      */
     @Bean(name = "publishExchange")
     public FanoutExchange publishExchange() {
-        //创建一个fanout类型的交换机
+        // 创建一个fanout类型的交换机
         return new FanoutExchange("publish-exchange");
     }
 
@@ -297,7 +297,7 @@ public class RabbitMqConfig {
 
     @Bean(name = "confirmTestExchange")
     public DirectExchange confirmTestExchange() {
-        //创建一个direct类型的交换机
+        // 创建一个direct类型的交换机
         return new DirectExchange("confirm-test-exchange");
     }
 

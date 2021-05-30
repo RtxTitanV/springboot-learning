@@ -112,8 +112,8 @@ class RabbitMqTest {
             logger.info("ReturnsCallback---路由键：" + routingKey);
         });
 
-        // rabbitTemplate.convertAndSend("confirm-exchange1", "info", "message");
-        // rabbitTemplate.convertAndSend("confirm-test-exchange", "info", "message");
+//        rabbitTemplate.convertAndSend("confirm-exchange1", "info", "message");
+//        rabbitTemplate.convertAndSend("confirm-test-exchange", "info", "message");
         rabbitTemplate.convertAndSend("confirm-exchange", "info", "message");
         // 为了便于测试，发送消息之后让线程休眠一会，避免测试方法结束之后因资源关闭导致confirmCallback出错
         Thread.sleep(2000);
@@ -140,7 +140,7 @@ class RabbitMqTest {
         rabbitTemplate.setReturnsCallback(returnedMessage -> {
             logger.error("消息从交换机到队列失败");
         });
-        // rabbitTemplate.convertAndSend("ack-exchange", "info", 2);
+//        rabbitTemplate.convertAndSend("ack-exchange", "info", 2);
         rabbitTemplate.convertAndSend("ack-exchange", "info", 0);
         // 为了便于测试，发送消息之后让线程休眠一会，避免测试方法结束之后因资源关闭导致confirmCallback出错
         Thread.sleep(2000);
