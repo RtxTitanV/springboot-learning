@@ -221,11 +221,11 @@ public class RabbitMqConfig {
     /**
      * 主题模式，声明交换机
      *
-     * @return DirectExchange对象
+     * @return TopicExchange对象
      */
     @Bean(name = "topicsExchange")
     public TopicExchange topicsExchange() {
-        // 创建一个direct类型的交换机
+        // 创建一个topic类型的交换机
         return new TopicExchange("topics-exchange");
     }
 
