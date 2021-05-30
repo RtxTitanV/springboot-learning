@@ -106,7 +106,7 @@ public class RabbitMqConfig {
 //     */
 //    @Bean(name = "routingExchange")
 //    public DirectExchange routingExchange() {
-//        //创建一个direct类型的交换机
+//        // 创建一个direct类型的交换机
 //        return new DirectExchange("routing-exchange");
 //    }
 //
@@ -225,7 +225,7 @@ public class RabbitMqConfig {
      */
     @Bean(name = "topicsExchange")
     public TopicExchange topicsExchange() {
-        //创建一个direct类型的交换机
+        // 创建一个direct类型的交换机
         return new TopicExchange("topics-exchange");
     }
 
