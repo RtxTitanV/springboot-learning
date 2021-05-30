@@ -205,7 +205,7 @@ class MybatisPlusTest {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         // WHERE (realname = ?)
         queryWrapper.eq("realname", "貂蝉");
-        //        queryWrapper.eq("gender", "女");
+//        queryWrapper.eq("gender", "女");
         User user = userMapper.selectOne(queryWrapper);
         logger.info(user.toString());
     }

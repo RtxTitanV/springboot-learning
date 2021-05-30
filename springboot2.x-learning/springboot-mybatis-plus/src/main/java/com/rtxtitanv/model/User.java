@@ -23,18 +23,13 @@ import java.time.LocalDateTime;
 public class User {
     /**
      * 用户ID
-     *
-     * @TableId 主键注解，建立实体类中实例域与表中主键字段的映射关系
-     * type属性：主键生成策略，AUTO为数据库自增
      */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO) // 主键注解，建立实体类中实例域与表中主键字段的映射关系
     private Long id;
     /**
      * 用户名
-     *
-     * @TableField 字段注解（非主键），建立实体类中实例域与表中（非主键）字段的映射关系
      */
-    @TableField(value = "username")
+    @TableField(value = "username") // 字段注解（非主键），建立实体类中实例域与表中（非主键）字段的映射关系
     private String username;
     /**
      * 用户密码
