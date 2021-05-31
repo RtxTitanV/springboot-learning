@@ -400,8 +400,8 @@ class MybatisPlusTest {
             queryWrapper
                 .between(userQuery.getMinAgeQuery() != null && userQuery.getMaxAgeQuery() != null, User::getAge,
                     userQuery.getMinAgeQuery(), userQuery.getMaxAgeQuery())
-                // 只有userQuery.getMinUserPointQuery()不为null且userQuery.getMaxUserPointQuery()不为null才会拼接user_point NOT
-                // BETWEEN ? AND ?
+                // 只有userQuery.getMinUserPointQuery()不为null且userQuery.getMaxUserPointQuery()不为null才会拼接
+                // user_point NOT BETWEEN ? AND ?
                 .notBetween(userQuery.getMinUserPointQuery() != null && userQuery.getMaxUserPointQuery() != null,
                     User::getUserPoint, userQuery.getMinUserPointQuery(), userQuery.getMaxUserPointQuery())
                 // id NOT IN (select id from user where user_level in (1,3))
