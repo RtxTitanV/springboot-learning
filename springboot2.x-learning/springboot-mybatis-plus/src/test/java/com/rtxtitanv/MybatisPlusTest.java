@@ -168,8 +168,8 @@ class MybatisPlusTest {
     void updateByWrapperTest2() {
         UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
         // UPDATE user SET user_point=?,user_level=?,birthday=? WHERE (gender = ?)
-        updateWrapper.eq("gender", "女").set("user_point", 12000).set("user_level", Byte.valueOf("6"))
-            .set("birthday", null);
+        updateWrapper.eq("gender", "女").set("user_point", 12000).set("user_level", Byte.valueOf("6")).set("birthday",
+            null);
         int result = userMapper.update(null, updateWrapper);
         logger.info("result: " + result);
     }
@@ -218,8 +218,8 @@ class MybatisPlusTest {
     void selectListTest() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         // SELECT realname,age,user_point,user_level FROM user WHERE (age BETWEEN ? AND ? OR user_point < ?)
-        queryWrapper.select("realname", "age", "user_point", "user_level").between("age", 21, 24).or()
-            .lt("user_point", 500);
+        queryWrapper.select("realname", "age", "user_point", "user_level").between("age", 21, 24).or().lt("user_point",
+            500);
         List<User> users = userMapper.selectList(queryWrapper);
         users.forEach(user -> logger.info(user.toString()));
     }
@@ -246,8 +246,8 @@ class MybatisPlusTest {
     void selectMapsTest() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         // SELECT realname,age,user_point,user_level FROM user WHERE (age BETWEEN ? AND ? OR user_point < ?)
-        queryWrapper.select("realname", "age", "user_point", "user_level").between("age", 21, 24).or()
-            .lt("user_point", 500);
+        queryWrapper.select("realname", "age", "user_point", "user_level").between("age", 21, 24).or().lt("user_point",
+            500);
         List<Map<String, Object>> maps = userMapper.selectMaps(queryWrapper);
         maps.forEach(map -> logger.info(map.toString()));
     }
@@ -338,9 +338,8 @@ class MybatisPlusTest {
             // gender不为null或空，age为null，WHERE (gender = ?)
             // gender为null或空，age不为null，WHERE (age = ?)
             // gender为null或空，age为null，没有条件
-            queryWrapper
-                .allEq(!StringUtils.isNullOrEmpty(userQuery.getGenderQuery()) || userQuery.getAgeQuery() != null, map,
-                    false);
+            queryWrapper.allEq(
+                !StringUtils.isNullOrEmpty(userQuery.getGenderQuery()) || userQuery.getAgeQuery() != null, map, false);
             List<User> users = userMapper.selectList(queryWrapper);
             users.forEach(user -> logger.info(user.toString()));
         } else {
@@ -398,9 +397,11 @@ class MybatisPlusTest {
         if (userQuery != null) {
             LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
             // 只有userQuery.getMinAgeQuery()不为null且userQuery.getMaxAgeQuery()不为null才会拼接age BETWEEN ? AND ?
-            queryWrapper.between(userQuery.getMinAgeQuery() != null && userQuery.getMaxAgeQuery() != null, User::getAge,
-                userQuery.getMinAgeQuery(), userQuery.getMaxAgeQuery())
-                // 只有userQuery.getMinUserPointQuery()不为null且userQuery.getMaxUserPointQuery()不为null才会拼接user_point NOT BETWEEN ? AND ?
+            queryWrapper
+                .between(userQuery.getMinAgeQuery() != null && userQuery.getMaxAgeQuery() != null, User::getAge,
+                    userQuery.getMinAgeQuery(), userQuery.getMaxAgeQuery())
+                // 只有userQuery.getMinUserPointQuery()不为null且userQuery.getMaxUserPointQuery()不为null才会拼接user_point NOT
+                // BETWEEN ? AND ?
                 .notBetween(userQuery.getMinUserPointQuery() != null && userQuery.getMaxUserPointQuery() != null,
                     User::getUserPoint, userQuery.getMinUserPointQuery(), userQuery.getMaxUserPointQuery())
                 // id NOT IN (select id from user where user_level in (1,3))
@@ -429,8 +430,9 @@ class MybatisPlusTest {
         if (userQuery != null) {
             LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
             // 只有userQuery.getUsernameQuery()不为null或空才会拼接username LIKE ?，Parameters：%val%
-            queryWrapper.like(!StringUtils.isNullOrEmpty(userQuery.getUsernameQuery()), User::getUsername,
-                userQuery.getUsernameQuery())
+            queryWrapper
+                .like(!StringUtils.isNullOrEmpty(userQuery.getUsernameQuery()), User::getUsername,
+                    userQuery.getUsernameQuery())
                 // 只有userQuery.getPasswordQuery()不为null或空才会拼接password NOT LIKE ?，Parameters：%val%
                 .notLike(!StringUtils.isNullOrEmpty(userQuery.getPasswordQuery()), User::getPassword,
                     userQuery.getPasswordQuery())
@@ -463,9 +465,8 @@ class MybatisPlusTest {
         // 手动模拟查询条件
         Byte[] bytes = {2, 3, 5, 6};
         List<Byte> user_levels = Arrays.stream(bytes).collect(Collectors.toList());
-        UserQuery userQuery =
-            new UserQuery().setMinUserPointQuery(5000).setMaxAgeQuery(20).setUserLevelsQuery(user_levels)
-                .setGenderQuery("男");
+        UserQuery userQuery = new UserQuery().setMinUserPointQuery(5000).setMaxAgeQuery(20)
+            .setUserLevelsQuery(user_levels).setGenderQuery("男");
         if (userQuery != null) {
             LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
             // 只有userQuery.getMinUserPointQuery()不为null才会拼接user_point >= ?
@@ -478,9 +479,9 @@ class MybatisPlusTest {
                 // 只有userQuery.getUserLevelsQuery()不为null或空才会拼接OR (user_level NOT IN (?,?,?,?))
                 // 同时只有userQuery.getGenderQuery()不为null或空才会拼接OR (user_level NOT IN (?,?,?,?) AND gender = ?)
                 .or(userQuery.getUserLevelsQuery() != null && !userQuery.getUserLevelsQuery().isEmpty(),
-                    i -> i.notIn(User::getUserLevel, userQuery.getUserLevelsQuery())
-                        .eq(!StringUtils.isNullOrEmpty(userQuery.getGenderQuery()), User::getGender,
-                            userQuery.getGenderQuery()));
+                    i -> i.notIn(User::getUserLevel, userQuery.getUserLevelsQuery()).eq(
+                        !StringUtils.isNullOrEmpty(userQuery.getGenderQuery()), User::getGender,
+                        userQuery.getGenderQuery()));
             List<User> users = userMapper.selectList(queryWrapper);
             users.forEach(user -> logger.info(user.toString()));
         } else {
@@ -550,10 +551,12 @@ class MybatisPlusTest {
     @Test
     void selectByWrapperTest9() {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        // SELECT user_level,GROUP_CONCAT(realname) AS realname_concat,COUNT(*) AS count,SUM(user_point) AS point_sum,MAX(age) AS max_age FROM user GROUP BY user_level HAVING point_sum < 5000 OR max_age > 30
-        queryWrapper.select("user_level", "GROUP_CONCAT(realname) AS realname_concat", "COUNT(*) AS count",
-            "SUM(user_point) AS point_sum", "MAX(age) AS max_age").groupBy("user_level")
-            .having(true, "point_sum < 5000 OR max_age > 30");
+        // SELECT user_level,GROUP_CONCAT(realname) AS realname_concat,COUNT(*) AS count,SUM(user_point) AS
+        // point_sum,MAX(age) AS max_age FROM user GROUP BY user_level HAVING point_sum < 5000 OR max_age > 30
+        queryWrapper
+            .select("user_level", "GROUP_CONCAT(realname) AS realname_concat", "COUNT(*) AS count",
+                "SUM(user_point) AS point_sum", "MAX(age) AS max_age")
+            .groupBy("user_level").having(true, "point_sum < 5000 OR max_age > 30");
         List<Map<String, Object>> maps = userMapper.selectMaps(queryWrapper);
         maps.forEach(map -> logger.info(map.toString()));
     }
@@ -564,7 +567,8 @@ class MybatisPlusTest {
      */
     @Test
     void selectAfterLogicDeleteTest() {
-        // SELECT id,username,password,realname,gender,age,email,user_point,user_level,birthday,deleted FROM user WHERE gender=? AND age=? AND deleted=0
+        // SELECT id,username,password,realname,gender,age,email,user_point,user_level,birthday,deleted FROM user WHERE
+        // gender=? AND age=? AND deleted=0
         QueryWrapper<User> queryWrapper = new QueryWrapper<>(new User().setGender("女").setAge(22).setDeleted(1));
         List<User> users = userMapper.selectList(queryWrapper);
         users.forEach(user -> logger.info(user.toString()));
