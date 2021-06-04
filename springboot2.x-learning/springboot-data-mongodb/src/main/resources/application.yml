@@ -1,0 +1,17 @@
+spring:
+  data:
+    mongodb:
+      # MongoDB的uri连接
+      # 集群可以配置为mongodb://username:password@ip:port,ip:port,ip:port
+      uri: mongodb://root:root@localhost:27017/admin
+      # 数据库
+      database: test
+
+# 输出nosql日志
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core: debug

@@ -15,6 +15,9 @@
         <module>springboot-data-jpa-kotlin</module>
         <module>springboot-data-jpa-multi-kotlin</module>
         <module>springboot-docker</module>
+        <module>springboot-rabbitmq-producer</module>
+        <module>springboot-rabbitmq-consumer</module>
+        <module>springboot-mybatis-plus</module>
+        <module>springboot-data-mongodb</module>
     </modules>
-
 </project>
