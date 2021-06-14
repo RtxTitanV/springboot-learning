@@ -1,0 +1,4 @@
+springfox:
+  documentation:
+    # 是否开启Swagger，true表示开启，false表示关闭
+    enabled: true
