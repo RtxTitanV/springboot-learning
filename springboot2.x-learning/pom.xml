@@ -19,5 +19,8 @@
         <module>springboot-rabbitmq-consumer</module>
         <module>springboot-mybatis-plus</module>
         <module>springboot-data-mongodb</module>
+        <module>springboot-swagger2</module>
+        <module>springboot-swagger3</module>
+        <module>springboot-swagger3-springdoc</module>
     </modules>
 </project>
