@@ -177,7 +177,7 @@ public class QiniuKodoUtils {
     }
 
     /**
-     * 手动拼接方式获取公共空间文件链接
+     * 手动拼接方式获取公开空间文件链接
      *
      * @param fileName 文件名
      * @return 文件链接

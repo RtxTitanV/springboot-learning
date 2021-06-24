@@ -48,7 +48,7 @@ public interface QiniuKodoService {
     String resumableUpload(MultipartFile file);
 
     /**
-     * 公共空间文件下载
+     * 公开空间文件下载
      *
      * @param fileName 文件名
      * @return 文件链接
