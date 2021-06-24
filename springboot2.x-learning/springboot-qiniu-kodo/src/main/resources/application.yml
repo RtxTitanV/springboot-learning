@@ -1,0 +1,13 @@
+# 自定义七牛云存储配置
+qiniu:
+  kodo:
+    # 配置accessKey
+    accessKey: tE5fkJWqWZ0wZFZLSNfkgjJCQ-5_IR-cm2LuNIiu
+    # 配置secretKey
+    secretKey: NCvKu-Xs7TvggV8_n7svfiPDRuB4yI622i7R_Y6w
+    # 配置空间名称
+    bucket: rtx-space
+    # 配置机房
+    region: huanan
+    # 配置域名
+    domain: quzqkh679.hn-bkt.clouddn.com
