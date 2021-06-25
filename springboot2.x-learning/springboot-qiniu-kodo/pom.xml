@@ -6,6 +6,7 @@
 
     <groupId>com.rtxtitanv</groupId>
     <artifactId>springboot-qiniu-kodo</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>springboot-qiniu-kodo</name>
