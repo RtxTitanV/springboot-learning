@@ -1,0 +1,22 @@
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+# 自定义腾讯云短信配置
+tencent:
+  sms:
+    # 配置腾讯云API密钥的SecretId
+    secretId: 这里填腾讯云API密钥的SecretId
+    # 配置腾讯云API密钥的SecretKey
+    secretKey: 这里填腾讯云API密钥的SecretKey
+    # 配置短信应用的SDKAppID
+    appId: 这里填短信应用的SDKAppID
+    # 配置签名内容
+    sign: "这里填签名内容"
+    # 配置模板ID
+    templateId: 这里填模板ID
+    # 配置过期时间
+    expireTime: 5
+    # 配置redis存储的key的前缀
+    phonePrefix: REGIST

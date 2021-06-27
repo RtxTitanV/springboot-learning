@@ -23,5 +23,6 @@
         <module>springboot-swagger3</module>
         <module>springboot-swagger3-springdoc</module>
         <module>springboot-qiniu-kodo</module>
+        <module>springboot-tencent-sms</module>
     </modules>
 </project>
