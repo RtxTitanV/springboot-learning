@@ -23,7 +23,7 @@ public class SmsController {
     private SmsService smsService;
 
     @PostMapping("/send")
-    public String sendSms(@RequestParam(value = "phoneNumber") String phoneNumber) {
+    public String sendSmsCode(@RequestParam(value = "phoneNumber") String phoneNumber) {
         return smsService.sendSmsCode(phoneNumber);
     }
 
