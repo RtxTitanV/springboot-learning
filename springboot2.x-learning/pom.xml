@@ -24,5 +24,6 @@
         <module>springboot-swagger3-springdoc</module>
         <module>springboot-qiniu-kodo</module>
         <module>springboot-tencent-sms</module>
+        <module>springboot-validator</module>
     </modules>
 </project>
