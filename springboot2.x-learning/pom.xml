@@ -25,5 +25,6 @@
         <module>springboot-qiniu-kodo</module>
         <module>springboot-tencent-sms</module>
         <module>springboot-validator</module>
+        <module>springboot-dozer</module>
     </modules>
 </project>

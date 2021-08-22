@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://dozermapper.github.io/schema/bean-mapping"
+          xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping
+                             http://dozermapper.github.io/schema/bean-mapping.xsd">
+    <!-- 描述两个类中属性的对应关系，对于两个类中同名的属性可以不映射 -->
+    <mapping date-format="yyyy/MM/dd HH:mm:ss">
+        <class-a>com.rtxtitanv.model.User</class-a>
+        <class-b>com.rtxtitanv.model.UserDTO</class-b>
+        <field>
+            <a>id</a>
+            <b>userId</b>
+        </field>
+        <field>
+            <a>name</a>
+            <b>userName</b>
+        </field>
+        <field>
+            <a>age</a>
+            <b>userAge</b>
+        </field>
+    </mapping>
+    <!-- map-id：映射的标识，通过此标识来确定使用该映射关系 -->
+    <mapping date-format="yyyy/MM/dd HH:mm:ss" map-id="user">
+        <class-a>com.rtxtitanv.model.User</class-a>
+        <class-b>com.rtxtitanv.model.UserDTO</class-b>
+        <field>
+            <a>id</a>
+            <b>userId</b>
+        </field>
+        <field>
+            <a>name</a>
+            <b>userName</b>
+        </field>
+        <field>
+            <a>age</a>
+            <b>userAge</b>
+        </field>
+    </mapping>
+    <mapping date-format="yyyy/MM/dd HH:mm:ss" map-id="user-exclude">
+        <class-a>com.rtxtitanv.model.User</class-a>
+        <class-b>com.rtxtitanv.model.UserDTO</class-b>
+        <field>
+            <a>id</a>
+            <b>userId</b>
+        </field>
+        <field>
+            <a>name</a>
+            <b>userName</b>
+        </field>
+        <field>
+            <a>age</a>
+            <b>userAge</b>
+        </field>
+        <field-exclude>
+            <a>email</a>
+            <b>email</b>
+        </field-exclude>
+    </mapping>
+    <!-- type="one-way"将映射设置为单向映射 -->
+    <mapping date-format="yyyy/MM/dd HH:mm:ss" map-id="user-oneway" type="one-way">
+        <class-a>com.rtxtitanv.model.UserDTO</class-a>
+        <class-b>com.rtxtitanv.model.User</class-b>
+        <field>
+            <a>userId</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a>userName</a>
+            <b>name</b>
+        </field>
+        <field>
+            <a>userAge</a>
+            <b>age</b>
+        </field>
+    </mapping>
+    <mapping date-format="yyyy/MM/dd HH:mm:ss" map-id="order">
+        <class-a>com.rtxtitanv.model.Order</class-a>
+        <class-b>com.rtxtitanv.model.OrderDTO</class-b>
+        <field>
+            <a>id</a>
+            <b>orderId</b>
+        </field>
+        <field>
+            <a>number</a>
+            <b>orderNumber</b>
+        </field>
+        <field>
+            <a>description</a>
+            <b>orderDescription</b>
+        </field>
+        <field>
+            <a>user</a>
+            <b>userDTO</b>
+        </field>
+    </mapping>
+    <mapping date-format="yyyy/MM/dd HH:mm:ss" map-id="user-deep-mapping">
+        <class-a>com.rtxtitanv.model.UserInfoDTO</class-a>
+        <class-b>com.rtxtitanv.model.User</class-b>
+        <field>
+            <a>userId</a>
+            <b>id</b>
+        </field>
+        <field>
+            <a>userName</a>
+            <b>name</b>
+        </field>
+        <field>
+            <a>userAge</a>
+            <b>age</b>
+        </field>
+        <field>
+            <a>userInfo.gender</a>
+            <b>gender</b>
+        </field>
+        <field>
+            <a>userInfo.email</a>
+            <b>email</b>
+        </field>
+        <field>
+            <a>userInfo.birthday</a>
+            <b>birthday</b>
+        </field>
+    </mapping>
+</mappings>
