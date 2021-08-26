@@ -26,5 +26,6 @@
         <module>springboot-tencent-sms</module>
         <module>springboot-validator</module>
         <module>springboot-dozer</module>
+        <module>springboot-antisamy</module>
     </modules>
 </project>
